@@ -27,6 +27,7 @@ import gdx.kapotopia.Helpers.Builders.FixedDialogSeqBuilder;
 import gdx.kapotopia.Helpers.Builders.TextButtonBuilder;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
 import gdx.kapotopia.Kapotopia;
+import gdx.kapotopia.Languages;
 import gdx.kapotopia.ScreenType;
 
 /**
@@ -352,8 +353,13 @@ public abstract class CinematicScreen implements Screen {
             this.changeOfImageSound = AssetDescriptors.SOUND_JUMP_V1;
             this.endSound = AssetDescriptors.SOUND_GAMESTART;
             this.pauseSound = AssetDescriptors.SOUND_PAUSE;
-            this.nextBtnLabel = "Next";
-            this.finishBtnLabel = "Play";
+            if (game.loc.getChosenLanguage() == Languages.FRENCH){
+                this.nextBtnLabel = "Suivant";
+                this.finishBtnLabel = "Jouer";
+            } else if (game.loc.getChosenLanguage() == Languages.ENGLISH){
+                this.nextBtnLabel = "Next";
+                this.finishBtnLabel = "Play";
+            }
             this.nextBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
             this.finishBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
             this.timerScheduleTime = 2f;
