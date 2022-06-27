@@ -24,11 +24,14 @@ import gdx.kapotopia.DialogsScreen.FixedDialogueSequence;
 import gdx.kapotopia.Fonts.Font;
 import gdx.kapotopia.Fonts.FontHelper;
 import gdx.kapotopia.Helpers.Builders.FixedDialogSeqBuilder;
+import gdx.kapotopia.Helpers.Builders.ImageTextButtonBuilder;
 import gdx.kapotopia.Helpers.Builders.TextButtonBuilder;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
 import gdx.kapotopia.Kapotopia;
 import gdx.kapotopia.Languages;
 import gdx.kapotopia.ScreenType;
+
+import gdx.kapotopia.Helpers.Padding;
 
 /**
  * This class define a common base for screens where only cinematics, shown with static pictures, are shown
@@ -110,8 +113,24 @@ public abstract class CinematicScreen implements Screen {
         Font styleNextBtn = nextBtnFont;
         Font styleFinishBtn = finishBtnFont;
 
+        // Texture
+        Texture texture;
+        if (nextScreen==ScreenType.DIFGAME1){
+            texture = game.ass.get(AssetDescriptors.BTN_WOOD);
+        }
+        else if (nextScreen==ScreenType.GAME2){
+            texture = game.ass.get(AssetDescriptors.BTN_SAND);
+        }
+        else{
+            texture = game.ass.get(AssetDescriptors.BTN_ROCK);
+        }
+
         final float xButton = this.game.viewport.getWorldWidth() / 2.5f;
-        this.next = new TextButtonBuilder(game, nextBtnLabel).withStyle(styleNextBtn).isVisible(true)
+        this.next = new ImageTextButtonBuilder(game, nextBtnLabel)
+                .withFontStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
+                .withImageStyle(texture)
+                .withPadding(Padding.STANDARD)
+                .isVisible(true)
                 .withPosition(xButton, this.game.viewport.getWorldHeight() / 30f).withListener(new ChangeListener() {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
