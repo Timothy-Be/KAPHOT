@@ -70,7 +70,7 @@ public class MainMenu implements Screen {
         this.part_1 = game.ass.get(AssetDescriptors.MM_PART1_CUT);
         this.part_2 = new NeonDoorAnimation(game, Animation.PlayMode.LOOP_RANDOM).getAnimation();
         this.part_3 = game.ass.get(AssetDescriptors.MM_PART3_CUT);
-        this.part_4 = game.ass.get(AssetDescriptors.MM_PART4);
+        this.part_4 = game.ass.get(AssetDescriptors.MM_PART4_CUT);
 
 
 
@@ -112,6 +112,10 @@ public class MainMenu implements Screen {
                 .withListener(new ChangeScreenListener(game, ScreenType.STIDEX))
                 .build();
 
+        final ImageButton imageButtonToOptions = new ImageButtonBuilder()
+                .withImageUp(part_4)
+                .withListener(new ChangeScreenListener(game, ScreenType.OPTIONS))
+                .build();
         final TextButton optionsBtn = new TextButtonBuilder(game, "Options").withStyle(style).withPosition(x / 3, y * 0.01f)
                 .withListener(new ChangeScreenListener(game, ScreenType.OPTIONS)).build();
 
@@ -122,12 +126,13 @@ public class MainMenu implements Screen {
 
         //stage.addActor(imgFond);
         //add button to the scene
-        stage.addActor(imageBtnToWorld2);
+        stage.addActor(imageBtnToWorld2);  //world 2 must be loaded first to avoid it overlapping the other 2
         stage.addActor(btnToWorld2);
         stage.addActor(imageBtnToWorld1);
         stage.addActor(btnToWorld1);
         stage.addActor(imageBtnToWorld3);
         stage.addActor(btnToWorld3);
+        stage.addActor(imageButtonToOptions);
         stage.addActor(optionsBtn);
         stage.addActor(version);
     }

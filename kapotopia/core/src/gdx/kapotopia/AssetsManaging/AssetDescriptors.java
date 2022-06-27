@@ -43,7 +43,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<Texture> MM_PART3_CUT =
             new AssetDescriptor<Texture>(AssetPaths.MM_PART3_CUT, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_PART4 =
-            new AssetDescriptor<Texture>(AssetPaths.MM_PART4, Texture.class); // % loaded at the start
+            new AssetDescriptor<Texture>(AssetPaths.MM_PART4_CUT, Texture.class); // % loaded at the start
+    public static final AssetDescriptor<Texture> MM_PART4_CUT =
+            new AssetDescriptor<Texture>(AssetPaths.MM_PART4_CUT, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_W1 =
             new AssetDescriptor<Texture>(AssetPaths.MM_W1, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_W2 =
