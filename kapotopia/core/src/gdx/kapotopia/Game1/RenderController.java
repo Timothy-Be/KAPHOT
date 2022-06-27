@@ -149,7 +149,7 @@ public class RenderController {
                 .withPosition(25, game1.getGameController().getBounds().height - (ww / 10.8f)).build();
         scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + game1.getGameController().getTotalScore()).withStyle(normalFont)
                 .withPosition(25, game1.getGameController().getBounds().height - (ww / 5.4f)).build();
-        pauseLabel = new LabelBuilder(game, loc.getString("pause_label_text")).withStyle(normalFont).withAlignment(Alignement.CENTER) // faut rajouter le x
+        pauseLabel = new LabelBuilder(game, loc.getString("continue_button")).withStyle(normalFont).withAlignment(Alignement.CENTER) // faut rajouter le x
                 .withY(game1.getGameController().getBounds().height / 2).isVisible(false).build();
         missedLabel = new LabelBuilder(game, loc.getString("missed_label_text")).withStyle(smallFont).isVisible(false).build();
         ennemiNameLabel = new LabelBuilder(game, game1.getGameController().getEnnemi().getName()).withStyle(smallFont).withTextAlignement(Align.center)
@@ -160,8 +160,10 @@ public class RenderController {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game1.getGameController().isPaused()) {
+                    pauseIcon.setChecked(false);
                     game1.resumeFromPause();
                 } else {
+                    pauseIcon.setChecked(true);
                     game1.pause();
                 }
                 Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + game1.getGameController().isPaused());
