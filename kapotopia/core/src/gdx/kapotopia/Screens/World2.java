@@ -36,11 +36,13 @@ public class World2 implements Screen {
 
         stage.addActor(imgFond);
 
+        final Localisation loc = game.loc;
+
         this.gameStart = game.ass.get(AssetDescriptors.SOUND_GAMESTART);
 
         float x = game.viewport.getWorldWidth() / 2.5f;
         float y = game.viewport.getWorldHeight() / 4;
-        final Button play = new TextButtonBuilder(game, game.loc.getString("play_button"))
+        final Button play = new TextButtonBuilder(game, loc.getString("play_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).withPosition(x,y).withListener(new ChangeListener() {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {

@@ -27,6 +27,7 @@ import gdx.kapotopia.Game3.EventHandlerGame3;
 import gdx.kapotopia.Helpers.Builders.PopUpBuilder;
 import gdx.kapotopia.Helpers.Builders.TextButtonBuilder;
 import gdx.kapotopia.Kapotopia;
+import gdx.kapotopia.Languages;
 import gdx.kapotopia.ScreenType;
 
 public class Game3 implements Screen {
@@ -178,9 +179,9 @@ public class Game3 implements Screen {
 
         final PopUpBuilder popup = new  PopUpBuilder(game, popStage);
 
-        popup.setTitle("Congratulations!");
+        popup.setTitle(game.loc.getString("congrats_msg"));
 
-        TextButton btnYes = new TextButtonBuilder(game, "Exit").withStyle(FontHelper.AESTHETIC_NORMAL_BLACK).build();
+        TextButton btnYes = new TextButtonBuilder(game, game.loc.getString("exit_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
         btnYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,
@@ -207,7 +208,7 @@ public class Game3 implements Screen {
 
         popup.setTitle(description);
 
-        TextButton btnYes = new TextButtonBuilder(game, "back").withStyle(FontHelper.AESTHETIC_NORMAL_BLACK).build();
+        TextButton btnYes = new TextButtonBuilder(game, game.loc.getString("back_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
         btnYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y,

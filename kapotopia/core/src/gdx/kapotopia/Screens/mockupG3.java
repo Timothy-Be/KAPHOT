@@ -44,11 +44,12 @@ public class mockupG3 extends CinematicScreen {
 
     public mockupG3(final Kapotopia game) {
         super(game, new Stage(game.viewport));
+        Localisation loc = game.loc;
 
         final float ww = GameConfig.GAME_WIDTH;
         final float wh = GameConfig.GAME_HEIGHT;
 
-        Localisation loc = game.loc;
+
 
         Font font = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
         Bounds dialogBubbleBounds = Align.getDialogBubbleBounds();
