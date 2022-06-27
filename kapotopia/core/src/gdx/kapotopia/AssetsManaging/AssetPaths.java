@@ -12,7 +12,10 @@ public class AssetPaths {
     public static final String BLANK_BACK = "FondNiveauBlanc2.png";
     // Main Menu
     public static final String MM_PART1 = "EcranMenu/MenuPrincipalCadre1.png";
+    public static final String MM_PART1_CUT = "EcranMenu/MenuPrincipalCadre1_cut.png";
     public static final String MM_PART3 = "EcranMenu/MenuPrincipalCadre3.png";
+    public static final String MM_PART3_CUT = "EcranMenu/MenuPrincipalCadre3_cut.png";
+
     public static final String MM_PART4 = "EcranMenu/MenuPrincipalBoutons.png";
     public static final String MM_W1 = "EcranMenu/World1EcranMenu.png";
     public static final String MM_W2 = "game3/intro/Monde2Ecran1.png";

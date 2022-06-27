@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import org.w3c.dom.Text;
+
 import java.util.Locale;
 
 public class AssetDescriptors {
@@ -34,8 +36,12 @@ public class AssetDescriptors {
     // Main Menu
     public static final AssetDescriptor<Texture> MM_PART1 =
             new AssetDescriptor<Texture>(AssetPaths.MM_PART1, Texture.class); // % loaded at the start
+    public static final AssetDescriptor<Texture> MM_PART1_CUT =
+            new AssetDescriptor<Texture>(AssetPaths.MM_PART1_CUT, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_PART3 =
             new AssetDescriptor<Texture>(AssetPaths.MM_PART3, Texture.class); // % loaded at the start
+    public static final AssetDescriptor<Texture> MM_PART3_CUT =
+            new AssetDescriptor<Texture>(AssetPaths.MM_PART3_CUT, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_PART4 =
             new AssetDescriptor<Texture>(AssetPaths.MM_PART4, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_W1 =
