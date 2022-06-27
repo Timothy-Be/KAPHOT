@@ -353,13 +353,10 @@ public abstract class CinematicScreen implements Screen {
             this.changeOfImageSound = AssetDescriptors.SOUND_JUMP_V1;
             this.endSound = AssetDescriptors.SOUND_GAMESTART;
             this.pauseSound = AssetDescriptors.SOUND_PAUSE;
-            if (game.loc.getChosenLanguage() == Languages.FRENCH){
-                this.nextBtnLabel = "Suivant";
-                this.finishBtnLabel = "Jouer";
-            } else if (game.loc.getChosenLanguage() == Languages.ENGLISH){
-                this.nextBtnLabel = "Next";
-                this.finishBtnLabel = "Play";
-            }
+
+            this.nextBtnLabel = game.loc.getString("next_button");
+            this.finishBtnLabel = game.loc.getString("play_button");
+
             this.nextBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
             this.finishBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
             this.timerScheduleTime = 2f;

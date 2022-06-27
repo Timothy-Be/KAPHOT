@@ -757,7 +757,7 @@ class Goal{
 
         popup = new PopUpBuilder(game, stage);
         popup.setTitle("TEMPLATE");
-        TextButton btnYes = new TextButtonBuilder(game, "CANCEL").withStyle(FontHelper.AESTHETIC_NORMAL_BLACK).build();
+        TextButton btnYes = new TextButtonBuilder(game, game.loc.getString("cancel_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
         btnYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
