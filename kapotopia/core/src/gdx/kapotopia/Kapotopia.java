@@ -242,6 +242,8 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		// Sounds
 		this.ass.load(AssetDescriptors.MUSIC_GAME3);
 
+		// IST-INDEX
+		this.ass.load(AssetDescriptors.CLOSE);
 
 	}
 

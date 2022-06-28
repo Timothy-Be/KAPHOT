@@ -117,6 +117,15 @@ public class STIDex implements Screen {
         displayedIstSprite.setTouchable(Touchable.enabled);
         stage.addActor(displayedIstSprite);
 
+        // Close button
+        Texture close = game.ass.get(AssetDescriptors.CLOSE);
+        final ImageButton imageButtonToOptions = new ImageButtonBuilder()
+                .withImageUp(close)
+                .withPosition(0, wh - close.getHeight())
+                .withListener(new ChangeScreenListener(game, ScreenType.MAINMENU))
+                .build();
+        stage.addActor(imageButtonToOptions);
+
         //right arrow
 
         ImageButton rightArrow = new ImageButtonBuilder().withImageUp(rightArrowT)
