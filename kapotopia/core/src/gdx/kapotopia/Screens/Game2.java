@@ -420,6 +420,16 @@ public class Game2 implements Screen {
 
             }
 
+            @Override
+            public void onTouch() {
+
+            }
+
+            @Override
+            public void onPan() {
+
+            }
+
             /**
              * Change the symptom that is displayed and considered current
              * @param left: boolean that indicates in what direction the change needs to be done
