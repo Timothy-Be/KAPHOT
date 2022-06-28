@@ -321,6 +321,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		destroyScreen(ScreenType.MAINMENU);
 		destroyScreen(ScreenType.MOCKUPG1);
 		destroyScreen(ScreenType.MOCKUPG2);
+		destroyScreen(ScreenType.MOCKUPG3);
 		destroyScreen(ScreenType.BILANG1);
 		destroyScreen(ScreenType.WORLD1);
 		destroyScreen(ScreenType.WORLD2);
