@@ -65,10 +65,10 @@ public class RenderController {
     private Label scoreLabel;
     private Label istCatchedLabel;
     private Label ennemiNameLabel;
-    private Label pauseLabel;
     private Label missedLabel;
     private ImageButton pauseIcon;
     private ImageTextButton quitBtn;
+    private ImageTextButton pauseBtn;
 
     // Constants
 
@@ -135,28 +135,7 @@ public class RenderController {
             }
         };
 
-        quitBtn = new ImageTextButtonBuilder(game, loc.getString("quit_button_text"))
-                .withFontStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE).withAlignment(Alignement.CENTER)
-                .withY((game1.getGameController().getBounds().getHeight() / 2) - BTN_SPACING).withPadding(Padding.STANDARD)
-                .withListener(quitEvent).withImageStyle(game.ass.get(AssetDescriptors.BTN_LEAF)).isVisible(false).build();
-
-        stage.addActor(quitBtn);
-
-        // Labels
-        lifeLabel = new LabelBuilder(game, game.loc.getString("lives_label") + game1.getGameController().getMireilleLife()).withStyle(normalFont)
-                .withPosition(game1.getGameController().getBounds().width - (ww / 4.5f), game1.getGameController().getBounds().height - (ww / 10.8f)).build();
-        istCatchedLabel = new LabelBuilder(game, game.loc.getString("istattrapees")  + game1.getGameController().getIstsCatched()).withStyle(normalFont)
-                .withPosition(25, game1.getGameController().getBounds().height - (ww / 10.8f)).build();
-        scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + game1.getGameController().getTotalScore()).withStyle(normalFont)
-                .withPosition(25, game1.getGameController().getBounds().height - (ww / 5.4f)).build();
-        pauseLabel = new LabelBuilder(game, loc.getString("continue_button")).withStyle(normalFont).withAlignment(Alignement.CENTER) // faut rajouter le x
-                .withY(game1.getGameController().getBounds().height / 2).isVisible(false).build();
-        missedLabel = new LabelBuilder(game, loc.getString("missed_label_text")).withStyle(smallFont).isVisible(false).build();
-        ennemiNameLabel = new LabelBuilder(game, game1.getGameController().getEnnemi().getName()).withStyle(smallFont).withTextAlignement(Align.center)
-                .withPosition(game1.getGameController().getEnnemi().getX() + (game1.getGameController().getEnnemi().getRealWidth() - game1.getGameController().getEnnemi().getName().length()) /2,
-                        game1.getGameController().getEnnemi().getY() - (ww / 10.8f)).build();
-
-        pauseLabel.addListener(new ClickListener() {
+        EventListener pauseEvent = new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if(game1.getGameController().isPaused()) {
@@ -168,12 +147,45 @@ public class RenderController {
                 }
                 Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + game1.getGameController().isPaused());
             }
-        });
+        };
+
+        quitBtn = new ImageTextButtonBuilder(game, loc.getString("quit_button_text"))
+                .withFontStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withAlignment(Alignement.CENTER)
+                .withY((game1.getGameController().getBounds().getHeight() / 2) - BTN_SPACING)
+                .withPadding(Padding.STANDARD)
+                .withListener(quitEvent)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_LEAF))
+                .isVisible(false)
+                .build();
+
+        pauseBtn = new ImageTextButtonBuilder(game, loc.getString("continue_button"))
+                .withFontStyle(normalFont).withAlignment(Alignement.CENTER) // faut rajouter le x
+                .withY(game1.getGameController().getBounds().height / 2)
+                .isVisible(false)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_LEAF))
+                .withPadding(Padding.STANDARD)
+                .withListener(pauseEvent)
+                .build();
+
+        stage.addActor(quitBtn);
+        stage.addActor(pauseBtn);
+
+        // Labels
+        lifeLabel = new LabelBuilder(game, game.loc.getString("lives_label") + game1.getGameController().getMireilleLife()).withStyle(normalFont)
+                .withPosition(game1.getGameController().getBounds().width - (ww / 4.5f), game1.getGameController().getBounds().height - (ww / 10.8f)).build();
+        istCatchedLabel = new LabelBuilder(game, game.loc.getString("istattrapees")  + game1.getGameController().getIstsCatched()).withStyle(normalFont)
+                .withPosition(25, game1.getGameController().getBounds().height - (ww / 10.8f)).build();
+        scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + game1.getGameController().getTotalScore()).withStyle(normalFont)
+                .withPosition(25, game1.getGameController().getBounds().height - (ww / 5.4f)).build();
+        missedLabel = new LabelBuilder(game, loc.getString("missed_label_text")).withStyle(smallFont).isVisible(false).build();
+        ennemiNameLabel = new LabelBuilder(game, game1.getGameController().getEnnemi().getName()).withStyle(smallFont).withTextAlignement(Align.center)
+                .withPosition(game1.getGameController().getEnnemi().getX() + (game1.getGameController().getEnnemi().getRealWidth() - game1.getGameController().getEnnemi().getName().length()) /2,
+                        game1.getGameController().getEnnemi().getY() - (ww / 10.8f)).build();
 
         stage.addActor(lifeLabel);
         stage.addActor(istCatchedLabel);
         stage.addActor(scoreLabel);
-        stage.addActor(pauseLabel);
         stage.addActor(missedLabel);
         stage.addActor(ennemiNameLabel);
     }
@@ -218,12 +230,12 @@ public class RenderController {
     }
 
     public void updateWhenResumeFromPause() {
-        pauseLabel.setVisible(false);
+        pauseBtn.setVisible(false);
         quitBtn.setVisible(false);
     }
 
     public void updateAtPause() {
-        pauseLabel.setVisible(true);
+        pauseBtn.setVisible(true);
         quitBtn.setVisible(true);
     }
 
