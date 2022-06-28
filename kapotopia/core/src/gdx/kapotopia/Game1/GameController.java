@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
+import gdx.kapotopia.Game4.Mireille;
 import gdx.kapotopia.GameDifficulty;
 import gdx.kapotopia.Helpers.SimpleDirectionGestureDetector;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
@@ -24,6 +25,7 @@ import gdx.kapotopia.ScreenType;
 import gdx.kapotopia.Screens.Game1;
 import gdx.kapotopia.UnlockedLevel;
 
+import static gdx.kapotopia.GameConfig.SCALLING_FACTOR_ENTITY;
 import static gdx.kapotopia.GameDifficulty.HARD;
 import static gdx.kapotopia.GameDifficulty.MEDIUM;
 
@@ -122,7 +124,7 @@ public class GameController {
         float z = 21 * x;
         float y = (worldW - x - z) / 3;
         this.MIN_X = x;
-        this.MAX_X = worldW - z;
+        this.MAX_X = worldW - z + 20;
         this.MIN_Y = 25;
         this.MOVE_VALUE_X = y;
     }
@@ -433,40 +435,75 @@ public class GameController {
         im.addProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
             @Override
             public void onLeft() {
-                Jcount = 0;
+                /////USED WITH OLD MOVE CONTROLS
+               /* Jcount = 0;
                 Gdx.app.debug(TAG, "swipe left - isPaused is " + isPaused);
                 if(!isPaused) {
                     final float newX = Math.max(mireille.getX() - MOVE_VALUE_X, MIN_X);
                     updateMireille(newX);
-                }
+                }*/
             }
 
             @Override
             public void onRight() {
-                Jcount = 0;
+                /*Jcount = 0;
                 Gdx.app.debug(TAG, "swipe right - isPaused is " + isPaused);
                 if(!isPaused) {
                     final float xAndMoveValue = mireille.getX() + MOVE_VALUE_X;
                     final float newX = Math.min(xAndMoveValue, MAX_X);
                     Gdx.app.log(TAG, "Math.min( " + xAndMoveValue + " , " + MAX_X + " )");
                     updateMireille(newX);
-                }
+                }*/
             }
 
             @Override
             public void onUp() {
-                Jcount++;
+                /*Jcount++;
                 Gdx.app.debug(TAG , "swipe up - isPaused is " + isPaused);
                 if (Jcount >= 3) {
                     isPaused = true;
                     jojoAppears = true;
-                }
+                }*/
             }
 
             @Override
             public void onDown() {
+                /*Jcount = 0;
+                Gdx.app.debug(TAG, "swipe down - isPaused is " + isPaused);*/
+            }
+
+            @Override
+            public void onTouch() {
+                if (!isPaused) {
+                    Jcount += 1;
+                    if (Jcount >= 3) {
+                        isPaused = true;
+                        jojoAppears = true;
+                    }
+                    int x = Gdx.input.getX();
+                    float newX = x - mireille.getWidth();
+                    if (newX > MAX_X) {
+                        newX = MAX_X;
+                    } else if (newX < MIN_X) {
+                        newX = MIN_X;
+                    }
+                    updateMireille(newX);
+                }
+            }
+
+            @Override
+            public void onPan() {
                 Jcount = 0;
-                Gdx.app.debug(TAG, "swipe down - isPaused is " + isPaused);
+                if (!isPaused) {
+                    int x = Gdx.input.getX();
+                    float newX = x - mireille.getWidth() - 15;
+                    if (newX > MAX_X) {
+                        newX = MAX_X;
+                    } else if (newX < MIN_X) {
+                        newX = MIN_X;
+                    }
+                    updateMireille(newX);
+                }
             }
 
             private void updateMireille(float newX) {
