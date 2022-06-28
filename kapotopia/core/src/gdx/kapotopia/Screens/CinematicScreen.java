@@ -131,7 +131,8 @@ public abstract class CinematicScreen implements Screen {
                 .withImageStyle(texture)
                 .withPadding(Padding.STANDARD)
                 .isVisible(true)
-                .withPosition(xButton, this.game.viewport.getWorldHeight() / 30f).withListener(new ChangeListener() {
+                .withPosition(xButton, this.game.viewport.getWorldHeight() / 30f)
+                .withListener(new ChangeListener() {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
                          if(!nextImage()) {
@@ -149,8 +150,13 @@ public abstract class CinematicScreen implements Screen {
                         Gdx.input.vibrate(vibrationTime / 4);
                     }
                 }).build();
-        this.finish = new TextButtonBuilder(game, finishBtnLabel).withStyle(styleFinishBtn).isVisible(false)
-                .withPosition(xButton, this.game.viewport.getWorldHeight() / 2f).withListener(new ChangeListener() {
+        this.finish = new ImageTextButtonBuilder(game, finishBtnLabel)
+                .withFontStyle(styleFinishBtn)
+                .withImageStyle(texture)
+                .withPadding(Padding.STANDARD)
+                .isVisible(false)
+                .withPosition(xButton, this.game.viewport.getWorldHeight() / 30f)
+                .withListener(new ChangeListener() {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
                         Gdx.input.vibrate(vibrationTime);
@@ -228,6 +234,13 @@ public abstract class CinematicScreen implements Screen {
         if(sequence != null) {
             // We hide the current element
             setElementVisibility(false, curImg);
+            if (curImg == sequence.getSize() -2){
+                setElementVisibility(true, ++curImg);
+                next.setVisible(false);
+                finish.setVisible(true);
+                changeOfImageSound.play();
+                return true;
+            }
             if (curImg < sequence.getSize()-1) {
                 // We make the next element visible
                 setElementVisibility(true, ++curImg);

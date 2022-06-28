@@ -132,9 +132,11 @@ public class mockupG2 extends CinematicScreen {
         this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME2)
                 .withImages(images)
                 .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_BLACK)
+                .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_BLACK)
                 .withTimerScheduleTime(0)
                 .withLabels(labels)
-                .withFinishBtn(false));
+                .withFinishBtn(true)
+                );
 
         getStage().addActor(skipBtn);
 
