@@ -137,6 +137,9 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		this.ass.load(AssetDescriptors.OP_BACK);
 		this.ass.load(AssetDescriptors.OP_MUTE);
 		this.ass.load(AssetDescriptors.OP_SPEAKER);
+		// World 2
+		this.ass.load(AssetDescriptors.MM1_W2);
+		this.ass.load(AssetDescriptors.MM2_W2);
 		// Game 1
 		this.ass.load(AssetDescriptors.B1_BACK);
 		// IntroG1

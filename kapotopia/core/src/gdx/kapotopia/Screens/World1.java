@@ -32,7 +32,6 @@ public class World1 implements Screen {
 
     public World1(final Kapotopia game) {
         this.game = game;
-        //Image imgFond = new Image(game.ass.get(AssetDescriptors.MM_W1));
         Texture imgFondGame1 = game.ass.get(AssetDescriptors.WORLD1_GAME1);
         Texture imgFondGame2 = game.ass.get(AssetDescriptors.WORLD1_GAME2);
         ImageButton imgGame1 = new ImageButtonBuilder()

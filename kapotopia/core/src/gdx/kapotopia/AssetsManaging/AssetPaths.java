@@ -22,6 +22,8 @@ public class AssetPaths {
     public static final String WORLD1_GAME1 = "EcranMenu/World1EcranMenuCadre1_cut.png";
     public static final String WORLD1_GAME2 = "EcranMenu/World1EcranMenuCadre2_cut.png";
     public static final String MM_W2 = "game3/intro/Monde2Ecran1.png";
+    public static final String MM1_W2 = "game3/intro/Monde2Ecran1_cut.png";
+    public static final String MM2_W2 = "game3/intro/PlaceHolder.png";  //TODO CHANGE TO ACTUAL IMAGE
     // Options
     public static final String OP_BACK = "EcranMenu/EcranOption.png";
     public static final String OP_SPEAKER = "icons/speaker.png";

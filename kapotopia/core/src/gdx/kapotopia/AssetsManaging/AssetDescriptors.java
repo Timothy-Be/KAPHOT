@@ -54,6 +54,10 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.WORLD1_GAME2, Texture.class); // % loaded at the start
     public static final AssetDescriptor<Texture> MM_W2 =
             new AssetDescriptor<Texture>(AssetPaths.MM_W2, Texture.class); // % loaded at the start
+    public static final AssetDescriptor<Texture> MM1_W2 =
+            new AssetDescriptor<Texture>(AssetPaths.MM1_W2, Texture.class); // % loaded at the start
+    public static final AssetDescriptor<Texture> MM2_W2 =
+            new AssetDescriptor<Texture>(AssetPaths.MM2_W2, Texture.class); // % loaded at the start
     // Options
     public static final AssetDescriptor<Texture> OP_BACK =
             new AssetDescriptor<Texture>(AssetPaths.OP_BACK, Texture.class); // % loaded at the start
