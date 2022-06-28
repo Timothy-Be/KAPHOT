@@ -476,9 +476,10 @@ public class GameController {
             public void onTouch() {
                 if (!isPaused) {
                     Jcount += 1;
-                    if (Jcount >= 3) {
+                    if (Jcount >= 3 && !jojoAppears) {
                         isPaused = true;
                         jojoAppears = true;
+                        Jcount = 0;
                     }
                     int x = Gdx.input.getX();
                     float newX = x - mireille.getWidth();
