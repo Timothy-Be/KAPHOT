@@ -181,6 +181,23 @@ public class Game3 implements Screen {
 
         popup.setTitle(game.loc.getString("congrats_msg"));
 
+        TextButton btnReplay = new TextButtonBuilder(game, game.loc.getString("restart_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
+        btnReplay.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y,
+                                     int pointer, int button) {
+
+                // Do whatever here for exit button
+                popup.close();
+
+                game.destroyScreen(ScreenType.GAME3);
+                game.changeScreen(ScreenType.GAME3);
+
+                return true;
+            }
+
+        });
+
         TextButton btnYes = new TextButtonBuilder(game, game.loc.getString("exit_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
         btnYes.addListener(new InputListener() {
             @Override
@@ -197,7 +214,8 @@ public class Game3 implements Screen {
             }
 
         });
-
+        
+        popup.addButton(btnReplay);
         popup.addButton(btnYes);
         popup.setPosition(0,50);
         popup.show();
@@ -225,5 +243,6 @@ public class Game3 implements Screen {
         popup.setPosition(0,50);
         popup.show();
     }
+
 
 }
