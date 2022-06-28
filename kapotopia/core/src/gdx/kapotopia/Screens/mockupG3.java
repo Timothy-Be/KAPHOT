@@ -190,7 +190,10 @@ public class mockupG3 extends CinematicScreen {
         /* ENDING */
 
         this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME3)
-        .withImages(images).withLabels(labels).withFinishBtn(true).withNextBtnStyle(FontHelper.CLASSIC_BOLD_NORMAL_WHITE).withFinishBtnStyle(FontHelper.CLASSIC_BOLD_NORMAL_WHITE));
+                .withImages(images).withLabels(labels)
+                .withFinishBtn(true).withNextBtnStyle(FontHelper.CLASSIC_BOLD_NORMAL_WHITE)
+                .withFinishBtnStyle(FontHelper.CLASSIC_BOLD_NORMAL_WHITE)
+                .withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE));
 
         getStage().addActor(skipBtn);
 

@@ -56,6 +56,7 @@ public abstract class CinematicScreen implements Screen {
     // Interaction
     private Button next;
     private Button finish;
+    private Button previous;
 
     /* FUNCTIONS */
 
@@ -94,7 +95,7 @@ public abstract class CinematicScreen implements Screen {
                          Label[] labels, Label[][] labelsBigList, AssetDescriptor<Texture> fond,
                          AssetDescriptor<Sound> changeOfImageSoundDescr, AssetDescriptor<Sound> endSoundDescr,
                          AssetDescriptor<Sound> pauseSoundDescr, String nextBtnLabel,
-                         String finishBtnLabel, Font nextBtnFont, Font finishBtnFont,
+                         String finishBtnLabel, Font nextBtnFont, Font finishBtnFont, String previousBtnLabel, Font previousBtnFont,
                          final float timerScheduleTime, final int vibrationTime, final boolean withFinishBtn) {
         // Graphics
         this.sequence = FixedDialogSeqBuilder.buildSequence(game, stage, imagesBigList, images, imagesTexturePaths,
@@ -109,9 +110,6 @@ public abstract class CinematicScreen implements Screen {
         this.changeOfImageSound = game.ass.get(changeOfImageSoundDescr);
         this.endSound = game.ass.get(endSoundDescr);
         this.pauseSound = game.ass.get(pauseSoundDescr);
-        // Buttons
-        Font styleNextBtn = nextBtnFont;
-        Font styleFinishBtn = finishBtnFont;
 
         // Texture
         Texture texture;
@@ -127,7 +125,7 @@ public abstract class CinematicScreen implements Screen {
 
         final float xButton = this.game.viewport.getWorldWidth() / 2.5f;
         this.next = new ImageTextButtonBuilder(game, nextBtnLabel)
-                .withFontStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
+                .withFontStyle(nextBtnFont)
                 .withImageStyle(texture)
                 .withPadding(Padding.STANDARD)
                 .isVisible(true)
@@ -151,7 +149,7 @@ public abstract class CinematicScreen implements Screen {
                     }
                 }).build();
         this.finish = new ImageTextButtonBuilder(game, finishBtnLabel)
-                .withFontStyle(styleFinishBtn)
+                .withFontStyle(finishBtnFont)
                 .withImageStyle(texture)
                 .withPadding(Padding.STANDARD)
                 .isVisible(false)
@@ -171,8 +169,28 @@ public abstract class CinematicScreen implements Screen {
                     }
                 }).build();
 
+        this.previous = new ImageTextButtonBuilder(game, previousBtnLabel)
+                .withFontStyle(previousBtnFont)
+                .withImageStyle(texture)
+                .withPadding(Padding.STANDARD)
+                .isVisible(false)
+                .withPosition(game.viewport.getWorldWidth() * 0.02f, this.game.viewport.getWorldHeight() / 30f)
+                .withListener(new ChangeListener() {
+                    @Override
+                    public void changed(ChangeEvent event, Actor actor) {
+                        if(!previousImage()) {
+                            // In the case when the image queue is empty (is == null or we saw every image)
+                            previous.setVisible(false);
+                            Gdx.input.vibrate(vibrationTime);
+                            endSound.play();
+                            resetScreen();
+                        }
+                    }
+                }).build();
+
         this.stage.addActor(this.next);
         this.stage.addActor(this.finish);
+        this.stage.addActor(this.previous);
     }
 
     private void loadAssets(AssetDescriptor<Sound> changeOfImageSound, AssetDescriptor<Sound> endSound,
@@ -209,6 +227,7 @@ public abstract class CinematicScreen implements Screen {
         this.pauseSound = null;
         this.next = null;
         this.finish = null;
+        this.previous = null;
     }
 
     /**
@@ -220,6 +239,7 @@ public abstract class CinematicScreen implements Screen {
                 params.getLabels(), params.getLabelsBigList(), params.getFond(), params.getChangeOfImageSound(),
                 params.getEndSound(), params.getPauseSound(), params.getNextBtnLabel(),
                 params.getFinishBtnLabel(), params.getNextBtnFont(), params.getFinishBtnFont(),
+                params.getPreviousBtnLabel(), params.getPreviousBtnFont(),
                 params.getTimerScheduleTime(), params.getVibrationTime(), params.getWithFinishBtn());
         initialized = true;
     }
@@ -227,10 +247,28 @@ public abstract class CinematicScreen implements Screen {
     // Regular functions
 
     /**
+     * Show the previous image in the queue. Return false if there are no previous image.
+     * @return false if no previous image in the queue. True otherwise.
+     */
+    public boolean previousImage() {
+        if (curImg <= 0) return false;
+        setElementVisibility(false,curImg);
+        setElementVisibility(true, --curImg);
+        changeOfImageSound.play();
+        if (curImg == 0){ previous.setVisible(false); }
+        if (curImg == sequence.getSize()-2){
+            finish.setVisible(false);
+            next.setVisible(true);
+        }
+        return true;
+    }
+
+    /**
      * Show the next image in the queue. If the queue is null or is empty, return false
      * @return false if the queue is null, or if is empty. True otherwise
      */
     public boolean nextImage() {
+        previous.setVisible(true);
         if(sequence != null) {
             // We hide the current element
             setElementVisibility(false, curImg);
@@ -261,6 +299,7 @@ public abstract class CinematicScreen implements Screen {
      */
     public void resetScreen() {
         curImg = 0;
+        previous.setVisible(false);
 
         if(sequence != null) {
             Iterator<DialogueElement> iterator = sequence.iterator();
@@ -369,8 +408,10 @@ public abstract class CinematicScreen implements Screen {
         private AssetDescriptor<Sound> pauseSound;
         private String nextBtnLabel;
         private String finishBtnLabel;
+        private String previousBtnLabel;
         private Font nextBtnFont;
         private Font finishBtnFont;
+        private Font previousBtnFont;
         private float timerScheduleTime;
         private int vibrationTime;
         private boolean withFinishBtn;
@@ -388,9 +429,11 @@ public abstract class CinematicScreen implements Screen {
 
             this.nextBtnLabel = game.loc.getString("next_button");
             this.finishBtnLabel = game.loc.getString("play_button");
+            this.previousBtnLabel = game.loc.getString("previous_button");
 
-            this.nextBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
-            this.finishBtnFont = FontHelper.CLASSIC_SANS_NORMAL_BLACK;
+            this.nextBtnFont = null;
+            this.finishBtnFont = null;
+            this.previousBtnFont = null;
             this.timerScheduleTime = 2f;
             this.vibrationTime = 200;
             this.withFinishBtn = true;
@@ -451,6 +494,11 @@ public abstract class CinematicScreen implements Screen {
             return this;
         }
 
+        public ParameterBundleBuilder withPreviousBtnTxt(String previousBtnTxt) {
+            this.previousBtnLabel = previousBtnTxt;
+            return this;
+        }
+
         public ParameterBundleBuilder withNextBtnStyle(Font nextBtnFont) {
             this.nextBtnFont = nextBtnFont;
             return this;
@@ -458,6 +506,11 @@ public abstract class CinematicScreen implements Screen {
 
         public ParameterBundleBuilder withFinishBtnStyle(Font finishBtnFont) {
             this.finishBtnFont = finishBtnFont;
+            return this;
+        }
+
+        public ParameterBundleBuilder withPreviousBtnStyle(Font previousBtnFont) {
+            this.previousBtnFont = previousBtnFont;
             return this;
         }
 
@@ -520,13 +573,15 @@ public abstract class CinematicScreen implements Screen {
             return finishBtnLabel;
         }
 
+        public String getPreviousBtnLabel() { return previousBtnLabel; }
+
         public Font getNextBtnFont() {
             return nextBtnFont;
         }
 
-        public Font getFinishBtnFont() {
-            return finishBtnFont;
-        }
+        public Font getFinishBtnFont() { return finishBtnFont; }
+
+        public Font getPreviousBtnFont() {return previousBtnFont; }
 
         public float getTimerScheduleTime() {
             return timerScheduleTime;
