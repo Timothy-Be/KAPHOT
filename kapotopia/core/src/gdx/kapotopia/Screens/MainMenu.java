@@ -108,7 +108,7 @@ public class MainMenu implements Screen {
                 .build();
         final TextButton btnToWorld3 = new TextButtonBuilder(game, game.loc.getString("text_istdex"))
                 .withStyle(style)
-                .withY(y * 0.2f).withAlignment(Alignement.CENTER)
+                .withY(y * 0.12f).withAlignment(Alignement.CENTER)
                 .withListener(new ChangeScreenListener(game, ScreenType.STIDEX))
                 .build();
 
