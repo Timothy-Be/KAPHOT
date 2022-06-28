@@ -123,6 +123,8 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);
     public static final AssetDescriptor<Texture> ARROW =
             new AssetDescriptor<Texture>(AssetPaths.ARROW, Texture.class);
+    public static final AssetDescriptor<Texture> CLOSE =
+            new AssetDescriptor<Texture>(AssetPaths.CLOSE, Texture.class);
     // IntroG1
     public static final AssetDescriptor<Texture> DIF_PART1 =
             new AssetDescriptor<Texture>(AssetPaths.DIF_PART1, Texture.class); // % loaded at the start

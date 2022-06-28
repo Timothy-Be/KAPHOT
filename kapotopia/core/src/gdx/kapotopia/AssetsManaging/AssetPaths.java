@@ -59,6 +59,7 @@ public class AssetPaths {
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";
+    public static final String CLOSE = "close.png";
     // Intro G1
     public static final String DIF_PART1 = "EcranMenu/EcranJeu1Haut.png";
     public static final String JUNGLE = "World1/Game1/Jungle.png";

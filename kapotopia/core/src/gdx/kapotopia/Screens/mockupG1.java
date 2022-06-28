@@ -225,7 +225,7 @@ public class mockupG1 extends CinematicScreen {
 
         /* ENDING */
         applyBundle(new ParameterBundleBuilder(ScreenType.DIFGAME1)
-                .withImages(images).withFinishBtn(false)
+                .withImages(images).withFinishBtn(false).withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE).withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE).withTimerScheduleTime(0).withLabels(labels));
         getStage().addActor(skipBtn);
     }
