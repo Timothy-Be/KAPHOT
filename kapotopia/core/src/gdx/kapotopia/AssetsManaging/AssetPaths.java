@@ -19,6 +19,8 @@ public class AssetPaths {
     public static final String MM_PART4 = "EcranMenu/MenuPrincipalBoutons.png";
     public static final String MM_PART4_CUT = "EcranMenu/MenuPrincipalBoutons_cut.png";
     public static final String MM_W1 = "EcranMenu/World1EcranMenu.png";
+    public static final String WORLD1_GAME1 = "EcranMenu/World1EcranMenuCadre1_cut.png";
+    public static final String WORLD1_GAME2 = "EcranMenu/World1EcranMenuCadre2_cut.png";
     public static final String MM_W2 = "game3/intro/Monde2Ecran1.png";
     // Options
     public static final String OP_BACK = "EcranMenu/EcranOption.png";

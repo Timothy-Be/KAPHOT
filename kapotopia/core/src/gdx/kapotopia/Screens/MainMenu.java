@@ -87,7 +87,7 @@ public class MainMenu implements Screen {
         ImageButton imageBtnToWorld1 = new ImageButtonBuilder()
                 .withImageUp(part_1)
                 .withListener(new ChangeScreenListener(game, ScreenType.WORLD1))
-                .withBounds(0, (float) (2*game.viewport.getWorldHeight()/3)+15, game.viewport.getWorldWidth(), (float) (game.viewport.getWorldHeight()/3))
+                .withBounds(0, (float) (2*game.viewport.getWorldHeight()/3)+15, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/3)
                 .build();
         final TextButton btnToWorld1 = new TextButtonBuilder(game, game.loc.getString("text_world1"))
                 .withStyle(style)
@@ -116,8 +116,11 @@ public class MainMenu implements Screen {
                 .withImageUp(part_4)
                 .withListener(new ChangeScreenListener(game, ScreenType.OPTIONS))
                 .build();
-        final TextButton optionsBtn = new TextButtonBuilder(game, "Options").withStyle(style).withPosition(x / 3, y * 0.01f)
-                .withListener(new ChangeScreenListener(game, ScreenType.OPTIONS)).build();
+        final TextButton optionsBtn = new TextButtonBuilder(game, "Options")
+                .withStyle(style)
+                .withY(y*0.01f).withAlignment(Alignement.CENTER)
+                .withListener(new ChangeScreenListener(game, ScreenType.OPTIONS))
+                .build();
 
         Label version = new LabelBuilder(game, "v:" + GameConfig.VERSION_NAME + " | code:" + GameConfig.VERSION_CODE)
                 .withStyle(FontHelper.AESTHETIC_TINY_BLACK).withPosition(15, 0).build();

@@ -5,13 +5,17 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import gdx.kapotopia.AssetsManaging.AssetDescriptors;
 import gdx.kapotopia.Fonts.FontHelper;
 import gdx.kapotopia.Helpers.Alignement;
+import gdx.kapotopia.Helpers.Builders.ImageButtonBuilder;
 import gdx.kapotopia.Helpers.Builders.TextButtonBuilder;
 import gdx.kapotopia.Helpers.ChangeScreenListener;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
@@ -28,9 +32,20 @@ public class World1 implements Screen {
 
     public World1(final Kapotopia game) {
         this.game = game;
-        Image imgFond = new Image(game.ass.get(AssetDescriptors.MM_W1));
+        //Image imgFond = new Image(game.ass.get(AssetDescriptors.MM_W1));
+        Texture imgFondGame1 = game.ass.get(AssetDescriptors.WORLD1_GAME1);
+        Texture imgFondGame2 = game.ass.get(AssetDescriptors.WORLD1_GAME2);
+        ImageButton imgGame1 = new ImageButtonBuilder()
+                .withImageUp(imgFondGame1)
+                .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG1))
+                .withBounds(0, game.viewport.getWorldHeight()/2, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
+                .build();
+        ImageButton imgGame2 = new ImageButtonBuilder()
+                .withImageUp(imgFondGame2)
+                .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG2))
+                .withBounds(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
+                .build();
         stage = new Stage(game.viewport);
-        stage.addActor(imgFond);
 
         // Import sounds
         this.pauseSound = game.ass.get(AssetDescriptors.SOUND_PAUSE);
@@ -45,7 +60,8 @@ public class World1 implements Screen {
                 .withY(y * 0.1f).withAlignment(Alignement.CENTER)
                 .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG2)).build();
 
-        stage.addActor(imgFond);
+        stage.addActor(imgGame1);
+        stage.addActor(imgGame2);
         stage.addActor(game1);
         stage.addActor(game2);
     }
