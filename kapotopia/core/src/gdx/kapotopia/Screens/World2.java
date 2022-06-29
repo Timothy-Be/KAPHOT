@@ -50,7 +50,7 @@ public class World2 implements Screen {
                 .withImageUp(imgFondGame1)
                 .withBounds(0, game.viewport.getWorldHeight()/2, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
                 .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG3) {}).build();
-        final Button btnGame1 = new TextButtonBuilder(game, loc.getString("play_button"))
+        final Button btnGame1 = new TextButtonBuilder(game, loc.getString("game3_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withY(y*0.57f).withAlignment(Alignement.CENTER)
                 .withListener(new ChangeScreenListener(game,ScreenType.MOCKUPG3) {}).build();
@@ -60,7 +60,7 @@ public class World2 implements Screen {
                 .withImageUp(imgFondGame2)
                 .withBounds(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
-        final Button btnGame2 = new TextButtonBuilder(game, loc.getString("play_button"))
+        final Button btnGame2 = new TextButtonBuilder(game, loc.getString("game4_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withY(y*0.1f).withAlignment(Alignement.CENTER)
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
