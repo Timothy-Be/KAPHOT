@@ -547,7 +547,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 				switch (ACTION) {
 					case CHANGE:
 						if (mockupG4 == null) mockupG4 = new mockupG4(this);
-						setScreen(mockupG3);
+						setScreen(mockupG4);
 						succeeded = true;
 						break;
 					case DESTROY:

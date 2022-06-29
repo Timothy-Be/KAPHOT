@@ -19,6 +19,7 @@ import gdx.kapotopia.Fonts.FontHelper;
 import gdx.kapotopia.Helpers.Alignement;
 import gdx.kapotopia.Helpers.Builders.ImageButtonBuilder;
 import gdx.kapotopia.Helpers.Builders.TextButtonBuilder;
+import gdx.kapotopia.Helpers.ChangeScreenListener;
 import gdx.kapotopia.Helpers.ImageHelper;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
 import gdx.kapotopia.Kapotopia;
@@ -38,8 +39,6 @@ public class World2 implements Screen {
         Texture imgFondGame1 = game.ass.get(AssetDescriptors.MM1_W2);
         Texture imgFondGame2 = game.ass.get(AssetDescriptors.MM2_W2);
 
-        stage = new Stage(game.viewport);
-
         final Localisation loc = game.loc;
 
         this.gameStart = game.ass.get(AssetDescriptors.SOUND_GAMESTART);
@@ -50,69 +49,23 @@ public class World2 implements Screen {
         final ImageButton imgButtonGame1 = new ImageButtonBuilder()
                 .withImageUp(imgFondGame1)
                 .withBounds(0, game.viewport.getWorldHeight()/2, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
-                .withListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        gameStart.play();
-                        Timer.schedule(new Timer.Task() {
-                            @Override
-                            public void run() {
-                                game.destroyScreen(ScreenType.WORLD2);
-                                game.changeScreen(ScreenType.MOCKUPG3);
-                            }
-                        }, 0.1f);
-                    }
-                }).build();
+                .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG3) {}).build();
         final Button btnGame1 = new TextButtonBuilder(game, loc.getString("play_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withY(y*0.57f).withAlignment(Alignement.CENTER)
-                .withListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        gameStart.play();
-                        Timer.schedule(new Timer.Task() {
-                            @Override
-                            public void run() {
-                                game.destroyScreen(ScreenType.WORLD2);
-                                game.changeScreen(ScreenType.MOCKUPG3);
-                            }
-                        },0.1f);
-                    }
-                }).build();
+                .withListener(new ChangeScreenListener(game,ScreenType.MOCKUPG3) {}).build();
 
         ///////////////////////////////////////////// same as 1 for now ////////////////////////////////////////////////////
         final ImageButton imgButtonGame2 = new ImageButtonBuilder()
                 .withImageUp(imgFondGame2)
                 .withBounds(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
-                .withListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        gameStart.play();
-                        Timer.schedule(new Timer.Task() {
-                            @Override
-                            public void run() {
-                                game.destroyScreen(ScreenType.WORLD2);
-                                game.changeScreen(ScreenType.MOCKUPG4);
-                            }
-                        }, 0.1f);
-                    }
-                }).build();
+                .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
         final Button btnGame2 = new TextButtonBuilder(game, loc.getString("play_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withY(y*0.1f).withAlignment(Alignement.CENTER)
-                .withListener(new ChangeListener() {
-                    @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        gameStart.play();
-                        Timer.schedule(new Timer.Task() {
-                            @Override
-                            public void run() {
-                                game.destroyScreen(ScreenType.WORLD2);
-                                game.changeScreen(ScreenType.MOCKUPG4);
-                            }
-                        },0.1f);
-                    }
-                }).build();
+                .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
+
+        stage = new Stage(game.viewport);
 
         stage.addActor(imgButtonGame1);
         stage.addActor(btnGame1);
