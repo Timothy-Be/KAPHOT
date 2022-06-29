@@ -100,7 +100,7 @@ public class STIDex implements Screen {
 
         // Computing gameboy downscreen coordinates
         final float x1_x = ww * 0.075f;
-        final float x1_y = wh * 0.282f;
+        final float x1_y = wh * 0.255f;
         final float w1 = ww * 0.85f;
         //final float h1 = wh * 0.15f;
 
