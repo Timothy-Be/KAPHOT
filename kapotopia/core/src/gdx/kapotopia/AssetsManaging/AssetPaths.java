@@ -30,6 +30,7 @@ public class AssetPaths {
     public static final String OP_MUTE = "icons/mute.png";
     // Game1
     public static final String B1_BACK = "World1/Game1/EcranTotal.png";
+    public static final String Failed = "World1/Game1/Failed.png";
     // Game2
     public static final String BALL = "World1/Game2/Ballon.png";
     public static final String SABLE = "World1/Game2/Sable.png";

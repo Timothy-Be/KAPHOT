@@ -68,6 +68,8 @@ public class AssetDescriptors {
     // Game1
     public static final AssetDescriptor<Texture> B1_BACK =
             new AssetDescriptor<Texture>(AssetPaths.B1_BACK, Texture.class);
+    public static final AssetDescriptor<Texture> Failed =
+            new AssetDescriptor<Texture>(AssetPaths.Failed, Texture.class);
     // Game2
     public static final AssetDescriptor<Texture> BALL =
             new AssetDescriptor<Texture>(AssetPaths.BALL, Texture.class);
