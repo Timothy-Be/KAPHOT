@@ -20,6 +20,7 @@ import gdx.kapotopia.Screens.ChoosingDifficultyScreen;
 import gdx.kapotopia.Screens.Game1;
 import gdx.kapotopia.Screens.Game2;
 import gdx.kapotopia.Screens.Game3;
+import gdx.kapotopia.Screens.Game4;
 import gdx.kapotopia.Screens.IntroCutscene;
 import gdx.kapotopia.Screens.LoadingScreen;
 import gdx.kapotopia.Screens.MainMenu;
@@ -31,6 +32,7 @@ import gdx.kapotopia.Screens.STIDex;
 import gdx.kapotopia.Screens.mockupG1;
 import gdx.kapotopia.Screens.mockupG2;
 import gdx.kapotopia.Screens.mockupG3;
+import gdx.kapotopia.Screens.mockupG4;
 
 public class Kapotopia extends com.badlogic.gdx.Game {
 
@@ -59,10 +61,12 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 	private Game1 game1;
 	private Game2 game2;
 	private Game3 game3;
+	private Game4 game4;
 	private MainMenu mainMenu;
 	private mockupG1 mockupG1;
 	private mockupG2 mockupG2;
 	private mockupG3 mockupG3;
+	private mockupG4 mockupG4;
 	private BilanG1 bilanG1;
 	private World1 world1;
 	private World2 world2;
@@ -395,6 +399,22 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 						break;
 				}
 				break;
+			case GAME4:
+				switch (ACTION) {
+					case CHANGE:
+						if (game4 == null) game4 = new Game4(this);
+						setScreen(game4);
+						succeeded = true;
+						break;
+					case DESTROY:
+						if (game4 != null) {
+							game4.dispose();
+							game4 = null;
+							succeeded = true;
+						}
+						break;
+				}
+				break;
 			case WORLD1:
 				switch (ACTION) {
 					case CHANGE:
@@ -518,6 +538,22 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 						if (mockupG3 != null) {
 							mockupG3.dispose();
 							mockupG3 = null;
+							succeeded = true;
+						}
+						break;
+				}
+				break;
+			case MOCKUPG4:
+				switch (ACTION) {
+					case CHANGE:
+						if (mockupG4 == null) mockupG4 = new mockupG4(this);
+						setScreen(mockupG3);
+						succeeded = true;
+						break;
+					case DESTROY:
+						if (mockupG4 != null) {
+							mockupG4.dispose();
+							mockupG4 = null;
 							succeeded = true;
 						}
 						break;

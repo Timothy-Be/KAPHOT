@@ -15,9 +15,11 @@ public class ReturnButtonManager {
         this.previousScreens.put(ScreenType.GAME1, ScreenType.WORLD1);
         this.previousScreens.put(ScreenType.GAME2, ScreenType.WORLD1);
         this.previousScreens.put(ScreenType.GAME3, ScreenType.WORLD2);
+        this.previousScreens.put(ScreenType.GAME4, ScreenType.WORLD2);
         this.previousScreens.put(ScreenType.MOCKUPG1, ScreenType.WORLD1);
         this.previousScreens.put(ScreenType.MOCKUPG2, ScreenType.WORLD1);
         this.previousScreens.put(ScreenType.MOCKUPG3, ScreenType.WORLD2);
+        this.previousScreens.put(ScreenType.MOCKUPG4, ScreenType.WORLD2);
         this.previousScreens.put(ScreenType.BILANG1, ScreenType.GAME1);
         this.previousScreens.put(ScreenType.WORLD1, ScreenType.MAINMENU);
         this.previousScreens.put(ScreenType.WORLD2, ScreenType.MAINMENU);
