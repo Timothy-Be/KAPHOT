@@ -209,12 +209,14 @@ public class RenderController {
     }
 
     public void renderFirstAnimation(float stateTime) {
+        pauseIcon.setDisabled(true);
         TextureRegion currentFrame = letsGoAnimation.getKeyFrame(stateTime, false);
         animationSpriteBatch.begin();
         animationSpriteBatch.draw(currentFrame, (game1.getGameController().getBounds().width / 5) * 2,
                 game1.getGameController().getBounds().height / 2,0,0,currentFrame.getRegionWidth(),
                 currentFrame.getRegionHeight(),0.6666f,0.6666f,0);
         animationSpriteBatch.end();
+        pauseIcon.setDisabled(false);
     }
 
     public void updateWhenResumeFromPause() {

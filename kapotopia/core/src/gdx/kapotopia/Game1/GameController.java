@@ -474,9 +474,9 @@ public class GameController {
 
             @Override
             public void onTouch() {
-                if (!isPaused) {
+                if (!isPaused && Gdx.input.getY() > game.viewport.getWorldHeight()*0.3f) {
                     Jcount += 1;
-                    if (Jcount >= 3 && !jojoAppears) {
+                    if (Jcount >= 50 && !jojoAppears) {
                         isPaused = true;
                         jojoAppears = true;
                         Jcount = 0;
@@ -495,7 +495,7 @@ public class GameController {
             @Override
             public void onPan() {
                 Jcount = 0;
-                if (!isPaused) {
+                if (!isPaused && Gdx.input.getY() > game.viewport.getWorldHeight()*0.3f) {
                     int x = Gdx.input.getX();
                     float newX = x - mireille.getWidth() - 15;
                     if (newX > MAX_X) {
