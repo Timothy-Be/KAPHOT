@@ -5,8 +5,8 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Timer;
 
@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
-import gdx.kapotopia.Game4.Mireille;
 import gdx.kapotopia.GameDifficulty;
 import gdx.kapotopia.Helpers.SimpleDirectionGestureDetector;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
@@ -25,7 +24,6 @@ import gdx.kapotopia.ScreenType;
 import gdx.kapotopia.Screens.Game1;
 import gdx.kapotopia.UnlockedLevel;
 
-import static gdx.kapotopia.GameConfig.SCALLING_FACTOR_ENTITY;
 import static gdx.kapotopia.GameDifficulty.HARD;
 import static gdx.kapotopia.GameDifficulty.MEDIUM;
 
@@ -145,12 +143,14 @@ public class GameController {
         // We ensure that after the animation has played, the game really start
         if(!letsGoAppeared) {
             final float delay = game1.getRenderController().getFirstAnimationTimeLeft();
+            game1.getRenderController().getPauseIcon().setVisible(false);
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
                     letsGoAppeared = true;
                     isPaused = false;
                     Gdx.app.debug(TAG, "LetsGoAppeared - isPaused is false");
+                    game1.getRenderController().getPauseIcon().setVisible(true);
                 }
             }, delay);
         }
@@ -200,6 +200,7 @@ public class GameController {
         if (jojoAppears && !jojoHasAppeared) {
             game1.getRenderController().jojo(delta);
             if (!jojoTimerLaunched) {
+                game1.getRenderController().getPauseIcon().setVisible(false);
                 game1.getSoundController().startJojo();
                 // We upgrade the difficulty => NIGHTMARE MODE
                 ennemi.setAccAddFactor(0.09f);
@@ -214,6 +215,7 @@ public class GameController {
                         isPaused = false;
                         Gdx.app.debug(TAG, "Jojo has appeared - isPaused is false");
                         mireille.resetPosition();
+                        game1.getRenderController().getPauseIcon().setVisible(true);
                     }
                 }, 6f);
                 jojoTimerLaunched = true;
