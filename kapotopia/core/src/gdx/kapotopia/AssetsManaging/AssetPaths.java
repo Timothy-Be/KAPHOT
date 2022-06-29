@@ -56,6 +56,8 @@ public class AssetPaths {
     public static final String NEON_TURQUOISE = "game3/NeonsTurquoises.png";
     public static final String NEON_GREEN = "game3/NeonsVerts.png";
     public static final String NEON_VIOLET = "game3/NeonsViolets.png";
+    // Game 4
+
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";
