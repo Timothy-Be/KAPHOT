@@ -92,6 +92,11 @@ public class MireilleBasic extends EntityAbstract {
         increaseScore(SCORE_UP);
     }
 
+    public void decreaseScore(){
+        int SCORE_DOWN = -10;
+        increaseScore(SCORE_DOWN);
+    }
+
     public void increaseScore(int add) {
         this.score += add;
         notifyScoreChanged(this.score);

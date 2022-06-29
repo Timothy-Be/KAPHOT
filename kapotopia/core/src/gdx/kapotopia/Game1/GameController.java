@@ -276,6 +276,7 @@ public class GameController {
         missedIsts.add(vc);
 
         game1.getRenderController().playMissedLabelAnim();
+        mireille.decreaseScore();
     }
 
     /**
@@ -311,7 +312,7 @@ public class GameController {
                         break;
                     case HARD:
                         // We send the player to the next game, so GAME 2
-                        game.changeScreen(ScreenType.MOCKUPG2);
+                        game.changeScreen(ScreenType.GAME1);
                         break;
                 }
             }
