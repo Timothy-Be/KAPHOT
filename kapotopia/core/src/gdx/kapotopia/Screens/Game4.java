@@ -70,6 +70,5 @@ public class Game4 implements Screen {
 
     @Override
     public void dispose() {
-
     }
 }
