@@ -59,11 +59,11 @@ public class World2 implements Screen {
         final ImageButton imgButtonGame2 = new ImageButtonBuilder()
                 .withImageUp(imgFondGame2)
                 .withBounds(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)
-                .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
+                .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG4) {}).build();
         final Button btnGame2 = new TextButtonBuilder(game, loc.getString("game4_button"))
                 .withStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withY(y*0.1f).withAlignment(Alignement.CENTER)
-                .withListener(new ChangeScreenListener(game, ScreenType.GAME4) {}).build();
+                .withListener(new ChangeScreenListener(game, ScreenType.MOCKUPG4) {}).build();
 
         stage = new Stage(game.viewport);
 
