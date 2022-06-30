@@ -24,7 +24,7 @@ public class GameState {
     Screen screen;
 
     private int boardSize = 15;  //  10-15 squares square
-    private int yOffset = 200;
+    private int yOffset = 100;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
     private Controls controls = new Controls();
@@ -137,11 +137,6 @@ public class GameState {
 
         shapeRenderer.setColor(1,1,1,1);
 
-        //buttons
-        shapeRenderer.rect(235, 265, 130, 135);
-        shapeRenderer.rect(235, 0, 130, 135);
-        shapeRenderer.rect(105,135,130,130);
-        shapeRenderer.rect(365,135,130,130);
 
         shapeRenderer.end();
 
