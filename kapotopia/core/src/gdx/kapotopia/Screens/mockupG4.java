@@ -16,6 +16,7 @@ import gdx.kapotopia.GameConfig;
 import gdx.kapotopia.Helpers.Align;
 import gdx.kapotopia.Helpers.Alignement;
 import gdx.kapotopia.Helpers.Bounds;
+import gdx.kapotopia.Helpers.Builders.ImageBuilder;
 import gdx.kapotopia.Helpers.Builders.ImageTextButtonBuilder;
 import gdx.kapotopia.Helpers.Builders.LabelBuilder;
 import gdx.kapotopia.Helpers.ImageHelper;
@@ -40,19 +41,19 @@ public class mockupG4 extends CinematicScreen {
         Bounds explicativeBubbleBounds = Align.getExplicativeBubbleBounds();
         Label[][] labels = new Label[][] {
                 {
-                        new LabelBuilder(game, loc.getString("game2_diag1"))
+                        new LabelBuilder(game, loc.getString("game4_diag1"))
                                 .withStyle(font).withBounds(dialogBubbleBounds)
                                 .isWrapped(true)
                                 .build()
                 },
                 {
-                        new LabelBuilder(game, loc.getString("game2_diag2"))
+                        new LabelBuilder(game, loc.getString("game4_diag2"))
                                 .withStyle(font).withBounds(dialogBubbleBounds)
                                 .isWrapped(true)
                                 .build()
                 },
                 {
-                        new LabelBuilder(game, loc.getString("game2_diag3"))
+                        new LabelBuilder(game, loc.getString("game4_diag3"))
                                 .withStyle(font).withBounds(dialogBubbleBounds)
                                 .isWrapped(true)
                                 .build()
@@ -62,7 +63,7 @@ public class mockupG4 extends CinematicScreen {
                                 .withStyle(FontHelper.CLASSIC_BOLD_BIG_BLACK).withAlignment(Alignement.CENTER)
                                 .withY(wh - explicativeBubbleBounds.getTopPad())
                                 .build(),
-                        new LabelBuilder(game, loc.getString("game2_rules"))
+                        new LabelBuilder(game, loc.getString("game4_rules"))
                                 .withStyle(font).withBounds(explicativeBubbleBounds)
                                 .isWrapped(true)
                                 .build()
@@ -77,10 +78,11 @@ public class mockupG4 extends CinematicScreen {
         final Image mireilleSurprise = new Image(game.ass.get(AssetDescriptors.MI_SURPRISED));
         mireilleSurprise.setScale(GameConfig.SCALLING_FACTOR_INTROS);
         mireilleSurprise.setPosition(ww / 4f, 0);
-        final Image alyxOpen = new Image(game.ass.get(AssetDescriptors.ALYX_OPEN));
-        alyxOpen.setPosition(ww / 5f, 0);
-        final Image alyxNorm = new Image(game.ass.get(AssetDescriptors.ALYX_NORMAL));
-        alyxNorm.setPosition(ww / 5f, 0);
+
+        final Image tom = new ImageBuilder().withTexture(game.ass.get(AssetDescriptors.GODIVA))
+                .withPosition(ww * 0.075f, wh * 0.04f)
+                .build();
+        tom.setScale(GameConfig.SCALLING_FACTOR_INTROS);
 
         final Image[][] images = {
                 {
@@ -102,22 +104,23 @@ public class mockupG4 extends CinematicScreen {
                         sky,
                         sea,
                         sand,
-                        alyxOpen,
+                        tom,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_LEFT))
                 },
                 {
                         sand,
                         sky,
                         sea,
-                        alyxNorm,
+                        sand,
+                        tom,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_EXPL))
                 }
         };
         // Skip button
         skipBtn = new ImageTextButtonBuilder(game, game.loc.getString("skip_button"))
-                .withFontStyle(FontHelper.AESTHETIC_NORMAL_BLACK)
+                .withFontStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withPosition(game.viewport.getWorldWidth() * 0.75f, this.game.viewport.getWorldHeight() / 30f)
-                .withImageStyle(game.ass.get(AssetDescriptors.BTN_SAND)).isVisible(true)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK)).isVisible(true)
                 .withPadding(Padding.STANDARD)
                 .withListener(new ChangeListener() {
                     @Override
@@ -131,9 +134,9 @@ public class mockupG4 extends CinematicScreen {
 
         this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME4)
                 .withImages(images)
-                .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_BLACK)
-                .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_BLACK)
-                .withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_BLACK)
+                .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withTimerScheduleTime(0)
                 .withLabels(labels)
                 .withFinishBtn(true)
@@ -142,7 +145,7 @@ public class mockupG4 extends CinematicScreen {
         getStage().addActor(skipBtn);
 
         // Setting up the music
-        game.getMusicControl().changeMusic(game.ass.get(AssetDescriptors.MUSIC_GAME2), 0, true);
+        game.getMusicControl().changeMusic(game.ass.get(AssetDescriptors.MUSIC_GAME3), 0, true);
         game.getMusicControl().playMusic();
     }
 
@@ -150,7 +153,7 @@ public class mockupG4 extends CinematicScreen {
     public void show() {
         setUpInputProcessor();
 
-        skipBtn.setVisible(game.getSettings().isIntro_2_skip());
+        skipBtn.setVisible(game.getSettings().isIntro_4_skip());
     }
 
     @Override
