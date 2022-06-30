@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import gdx.kapotopia.AssetsManaging.AssetDescriptors;
@@ -108,11 +109,11 @@ public class Game3 implements Screen {
 
     public Core getCore(){return core;}
 
-    public void back(){
+    public void back(ArrayList<String> list){
         if(core.playerSucceeded()) {
             this.successSound.play();
         }
-        quitGameConfirm();
+        quitGameConfirm(list);
     }
     public final Kapotopia getGame(){
         return game;
@@ -175,11 +176,21 @@ public class Game3 implements Screen {
         stage.dispose();
     }
 
-    public void quitGameConfirm() {
+    public void quitGameConfirm(ArrayList<String> list) {
 
         final PopUpBuilder popup = new  PopUpBuilder(game, popStage);
 
-        popup.setTitle(game.loc.getString("congrats_msg"));
+        String title = game.loc.getString("congrats_msg");
+        if (!list.isEmpty()){
+            title += "\n" + game.loc.getString("mistake_msg");
+            for (String e : list){
+                title += "\n"+ game.loc.getString(e);
+            }
+        }
+
+        popup.setTitle(title);
+
+
 
         TextButton btnReplay = new TextButtonBuilder(game, game.loc.getString("restart_button")).withStyle(FontHelper.AESTHETIC_NORMAL_WHITE).build();
         btnReplay.addListener(new InputListener() {
