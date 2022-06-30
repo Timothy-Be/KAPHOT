@@ -132,7 +132,7 @@ public class mockupG4 extends CinematicScreen {
                 .build();
 
 
-        this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME4)
+        this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME4) // changed from GAME4
                 .withImages(images)
                 .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)

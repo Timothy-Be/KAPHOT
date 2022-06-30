@@ -22,6 +22,7 @@ public class GameState {
 
     private Kapotopia game;
     Screen screen;
+
     private int boardSize = 15;  //  10-15 squares square
     private int yOffset = 200;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
@@ -47,7 +48,7 @@ public class GameState {
         long timestamp = System.currentTimeMillis() / 1000; // time in seconds
         if (timestamp % 4 == 0 && timestamp != prevtime) {
             foods.add(new Food(boardSize));
-            if (foods.size() == 16) {   //max 15 foods on screen
+            if (foods.size() == 11) {   //max 10 foods on screen
                 foods.remove(0);
             }
         }
