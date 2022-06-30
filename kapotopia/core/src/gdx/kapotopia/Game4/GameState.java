@@ -23,13 +23,13 @@ public class GameState {
     private Kapotopia game;
     Screen screen;
 
-    private int snakeSize = 15;  //  10-15 squares square
-    private int boardSize = 18;
+    private int snakeSize = 10;  //  10-15 squares square
+    private int boardSize = 12;
     private int yOffset = 308;
     private int xOffset = 20;
+    private int direction = 0;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
-    private Controls controls = new Controls();
     private CopyOnWriteArrayList<Food> foods= new CopyOnWriteArrayList<Food>();
     private int snakeLength = 3;
     long prevtime = 0;
@@ -45,9 +45,20 @@ public class GameState {
         mBody.addLast(new BodyPart(15,13, boardSize));
     }
 
+    public void setDirection(int nextDirection){
+        if (direction == 0 && nextDirection != 2) {
+            this.direction = nextDirection;
+        } else if (direction == 2 && nextDirection != 0) {
+            this.direction = nextDirection;
+        } else if (direction == 1 && nextDirection != 3){
+            this.direction = nextDirection;
+        } else if (direction == 3 && nextDirection != 1){
+            this.direction = nextDirection;
+        }
+    }
+
     public void update(float delta, Viewport viewport) {
         mTimer += delta;
-        controls.update(viewport);
         long timestamp = System.currentTimeMillis() / 1000; // time in seconds
         if (timestamp % 4 == 0 && timestamp != prevtime) {
             foods.add(new Food(snakeSize));
@@ -66,7 +77,7 @@ public class GameState {
     private void advance() {
         float headX = mBody.first().getX();
         float headY = mBody.first().getY();
-        switch(controls.getDirection()) {
+        switch(this.direction) {
             case 0: //up
                 mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
                 break;

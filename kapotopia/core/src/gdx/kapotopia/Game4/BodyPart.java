@@ -5,9 +5,9 @@ public class BodyPart {
     private float y;
 
     public BodyPart(float x, float y, int boardSize) {
-        this.x  = x % (boardSize - 3);
+        this.x  = x % (boardSize - 2);
         if (this.x<0) {
-            this.x += boardSize-3;
+            this.x += boardSize-2;
         }
         this.y  = y % boardSize;
         if (this.y<0) {
