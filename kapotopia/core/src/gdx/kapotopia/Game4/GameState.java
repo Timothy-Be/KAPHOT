@@ -22,8 +22,8 @@ public class GameState {
 
     private Kapotopia game;
     Screen screen;
-    private int boardSize = 30;  //  30 squares square
-    private int yOffset = 400;
+    private int boardSize = 15;  //  10-15 squares square
+    private int yOffset = 200;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
     private Controls controls = new Controls();
@@ -109,21 +109,14 @@ public class GameState {
         }
     }
 
-    public void draw(int width, int height, OrthographicCamera camera) {
+    public void draw(float width, float height, OrthographicCamera camera) {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-        shapeRenderer.setColor(1,1,1,1);
-        shapeRenderer.rect(0, yOffset, width, width);
-
-        shapeRenderer.setColor(0,0,0,1);
-        shapeRenderer.rect(5, yOffset+5, width-5*2, width-5*2);
-
-        shapeRenderer.setColor(1,1,1,1);
 
         //snake
         float scaleSnake = width/boardSize;
         for (BodyPart bp : mBody) {
+
             shapeRenderer.rect(bp.getX()*scaleSnake, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 

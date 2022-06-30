@@ -65,6 +65,7 @@ public class AssetPaths {
     public static final String LEFT_ARROW4 = "game4/left_arrow.png";
     public static final String RIGHT_ARROW4 = "game4/right_arrow.png";
     public static final String PAUSE_LOGO4 = "game4/pause_logo.png";
+    public static final String PLAY_LOGO4 = "game4/play_logo.png";
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";

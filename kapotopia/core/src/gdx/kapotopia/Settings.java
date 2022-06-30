@@ -293,7 +293,7 @@ public class Settings {
 
     public boolean isIntro_4_skip(){ return intro_4_skip; }
 
-    public void set_Intro4_skip(boolean intro_4_skip){
+    public void setIntro_4_skip(boolean intro_4_skip){
         prefs_gen.putBoolean(PREF_INTRO_4_SKIP, intro_4_skip);
         prefs_gen.flush();
         this.intro_4_skip = intro_4_skip;
