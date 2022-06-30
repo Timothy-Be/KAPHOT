@@ -15,7 +15,7 @@ public class Game4 implements Screen {
 
     private Kapotopia game;
     private final String TAG = this.getClass().getSimpleName();
-    private GameState gameState = new GameState();
+    private GameState gameState;
 
     private final int width = 600;
     private final int height = 1000;
@@ -25,6 +25,7 @@ public class Game4 implements Screen {
 
     public Game4(Kapotopia game) {
         this.game = game;
+        gameState = new GameState(game, this);
         camera.setToOrtho(false, width, height);
         viewport = new FitViewport(width, height, camera);
         viewport.apply();
@@ -45,7 +46,6 @@ public class Game4 implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gameState.draw(width, height, camera);
-        Gdx.app.log(TAG, "Delta : " + delta);
     }
 
     @Override
