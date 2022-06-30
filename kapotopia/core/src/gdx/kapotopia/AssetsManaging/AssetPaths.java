@@ -58,7 +58,13 @@ public class AssetPaths {
     public static final String NEON_GREEN = "game3/NeonsVerts.png";
     public static final String NEON_VIOLET = "game3/NeonsViolets.png";
     // Game 4
-
+    public static final String COVER_GAME4 = "game4/game_cover.png";
+    public static final String BACKGROUND_GAME4 = "game4/background_game.png";
+    public static final String DOWN_ARROW4 = "game4/down_arrow.png";
+    public static final String UP_ARROW4 = "game4/up_arrow.png";
+    public static final String LEFT_ARROW4 = "game4/left_arrow.png";
+    public static final String RIGHT_ARROW4 = "game4/right_arrow.png";
+    public static final String PAUSE_LOGO4 = "game4/pause_logo.png";
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";
