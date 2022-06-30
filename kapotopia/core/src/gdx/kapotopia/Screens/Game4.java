@@ -40,8 +40,8 @@ public class Game4 implements Screen {
         this.loc = game.loc;
         gameState = new GameState(game, this);
 
-        screenWidth = game.viewport.getWorldWidth();
-        screenHeight = game.viewport.getWorldHeight();
+        screenWidth = game.viewport.getScreenWidth();
+        screenHeight = game.viewport.getScreenHeight();
 
         this.camera = new OrthographicCamera(screenWidth, screenHeight);
         game.viewport.setCamera(camera);

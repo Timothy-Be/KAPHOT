@@ -5,25 +5,25 @@ import com.badlogic.gdx.math.MathUtils;
 import org.graalvm.compiler.loop.MathUtil;
 
 public class Food {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private int type; //0-2,3,4 unsafe, safe, protection
 
-    public Food(int boardsize) {
-        randomisePos(boardsize);
+    public Food(int boardSize) {
+        randomisePos(boardSize);
     }
 
-    public void randomisePos(int boardsize) {
-        x = MathUtils.random(boardsize-1);
-        y = MathUtils.random(boardsize-1);
+    public void randomisePos(int boardSize) {
+        x = MathUtils.random(boardSize-1);
+        y = MathUtils.random(boardSize-1);
         type = MathUtils.random(4);
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 

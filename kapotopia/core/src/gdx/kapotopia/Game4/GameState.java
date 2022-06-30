@@ -23,8 +23,10 @@ public class GameState {
     private Kapotopia game;
     Screen screen;
 
-    private int boardSize = 15;  //  10-15 squares square
-    private int yOffset = 100;
+    private int snakeSize = 15;  //  10-15 squares square
+    private int boardSize = 18;
+    private int yOffset = 308;
+    private int xOffset = 20;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
     private Controls controls = new Controls();
@@ -37,6 +39,7 @@ public class GameState {
     public GameState(Kapotopia game, Screen screen) {
         this.game = game;
         this.screen = screen;
+
         mBody.addLast(new BodyPart(15,15, boardSize));
         mBody.addLast(new BodyPart(15,14, boardSize));
         mBody.addLast(new BodyPart(15,13, boardSize));
@@ -47,7 +50,7 @@ public class GameState {
         controls.update(viewport);
         long timestamp = System.currentTimeMillis() / 1000; // time in seconds
         if (timestamp % 4 == 0 && timestamp != prevtime) {
-            foods.add(new Food(boardSize));
+            foods.add(new Food(snakeSize));
             if (foods.size() == 11) {   //max 10 foods on screen
                 foods.remove(0);
             }
@@ -61,8 +64,8 @@ public class GameState {
     }
 
     private void advance() {
-        int headX = mBody.first().getX();
-        int headY = mBody.first().getY();
+        float headX = mBody.first().getX();
+        float headY = mBody.first().getY();
         switch(controls.getDirection()) {
             case 0: //up
                 mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
@@ -115,10 +118,9 @@ public class GameState {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         //snake
-        float scaleSnake = width/boardSize;
+        float scaleSnake = width/snakeSize;
         for (BodyPart bp : mBody) {
-
-            shapeRenderer.rect(bp.getX()*scaleSnake, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
+            shapeRenderer.rect(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 
         //Food
@@ -132,7 +134,7 @@ public class GameState {
             } else { //should never happen
                 shapeRenderer.setColor(1,0,0,1);
             }
-            shapeRenderer.rect(f.getX() * scaleSnake, f.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake);
+            shapeRenderer.rect(f.getX() * scaleSnake + xOffset, f.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 
         shapeRenderer.setColor(1,1,1,1);
