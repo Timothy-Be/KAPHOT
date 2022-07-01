@@ -327,6 +327,7 @@ public class Game4 implements Screen {
 
         gameState.update(delta, game.viewport);
         gameState.draw(screenWidth, screenHeight, camera);
+
     }
 
     @Override

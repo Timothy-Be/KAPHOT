@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -40,7 +39,6 @@ public class GameState {
     private int yOffset = 308;
     private int xOffset = 30;
     private int direction = 0;
-    private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
     private CopyOnWriteArrayList<Food> foods= new CopyOnWriteArrayList<Food>();
     private int snakeLength = 3;
@@ -275,27 +273,17 @@ public class GameState {
     }
 
     public void draw(float width, float height, OrthographicCamera camera) {
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
         //snake
-        float scaleSnake = width/snakeSize;
+        float scaleSnake = width / snakeSize;
         for (BodyPart bp : mBody) {
             bp.getIb().remove();
             ImageButton img = new ImageButtonBuilder()
                     .withImageUp(IST)
-                    .withBounds(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                    .withBounds(bp.getX() * scaleSnake + xOffset, bp.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake)
                     .build();
             screen.getStage().addActor(img);
             bp.setIb(img);
-            //shapeRenderer.rect(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
-
-        shapeRenderer.setColor(1,1,1,1);
-
-
-        shapeRenderer.end();
-
     }
 
     // GETTERS
