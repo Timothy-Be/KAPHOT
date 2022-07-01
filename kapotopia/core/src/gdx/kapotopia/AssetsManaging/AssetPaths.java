@@ -77,6 +77,17 @@ public class AssetPaths {
     public static final String GANT = "game4/gant.png";
     public static final String PENE_VAGINALE = "game4/pene_vaginal.png";
     public static final String PENE_ANALE = "game4/pene_anale.png";
+    public static final String ISTCHOICE = "game4/ISTChoice.png";
+    public static final String VIH = "IST/VIH.png";
+    public static final String HEPA = "IST/HepatiteA.png";
+    public static final String HEPB = "IST/HepatiteB.png";
+    public static final String HEPC = "IST/HepatiteC.png";
+    public static final String SYPHILIS = "IST/Syphilis.png";
+    public static final String HERPES = "IST/Herpes.png";
+    public static final String PAPILLO = "IST/Papillomavirus.png";
+    public static final String CHLAMYDIA = "IST/Chlamydia.png";
+    public static final String GONORRHEE= "IST/Gonorrhee.png";
+    public static final String TRICHOMONAS = "IST/Trichomonas.png";
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";

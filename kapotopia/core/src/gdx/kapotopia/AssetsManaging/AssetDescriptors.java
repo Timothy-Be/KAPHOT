@@ -159,9 +159,28 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.PENE_VAGINALE, Texture.class);
     public static final AssetDescriptor<Texture> PENE_ANALE =
             new AssetDescriptor<Texture>(AssetPaths.PENE_ANALE, Texture.class);
-
-
-
+    public static final AssetDescriptor<Texture> ISTCHOICE =
+            new AssetDescriptor<Texture>(AssetPaths.ISTCHOICE, Texture.class);
+    public static final AssetDescriptor<Texture> VIH =
+            new AssetDescriptor<Texture>(AssetPaths.VIH, Texture.class);
+    public static final AssetDescriptor<Texture> HEPA =
+            new AssetDescriptor<Texture>(AssetPaths.HEPA, Texture.class);
+    public static final AssetDescriptor<Texture> HEPB =
+            new AssetDescriptor<Texture>(AssetPaths.HEPB, Texture.class);
+    public static final AssetDescriptor<Texture> HEPC =
+            new AssetDescriptor<Texture>(AssetPaths.HEPC, Texture.class);
+    public static final AssetDescriptor<Texture> SYPHILIS =
+            new AssetDescriptor<Texture>(AssetPaths.SYPHILIS, Texture.class);
+    public static final AssetDescriptor<Texture> HERPES =
+            new AssetDescriptor<Texture>(AssetPaths.HERPES, Texture.class);
+    public static final AssetDescriptor<Texture> PAPILLO =
+            new AssetDescriptor<Texture>(AssetPaths.PAPILLO, Texture.class);
+    public static final AssetDescriptor<Texture> CHLAMYDIA =
+            new AssetDescriptor<Texture>(AssetPaths.CHLAMYDIA, Texture.class);
+    public static final AssetDescriptor<Texture> GONORRHEE =
+            new AssetDescriptor<Texture>(AssetPaths.GONORRHEE, Texture.class);
+    public static final AssetDescriptor<Texture> TRICHOMONAS =
+            new AssetDescriptor<Texture>(AssetPaths.TRICHOMONAS, Texture.class);
     // STIDex
     public static final AssetDescriptor<Texture> DEX_BACK =
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);
