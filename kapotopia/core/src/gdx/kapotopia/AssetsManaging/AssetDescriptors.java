@@ -121,6 +121,8 @@ public class AssetDescriptors {
     public static final AssetDescriptor<Texture> NEON_VIOLET =
             new AssetDescriptor<Texture>(AssetPaths.NEON_VIOLET, Texture.class);
     //Game4
+    public static final AssetDescriptor<Texture> BACKGROUND_DISC =
+            new AssetDescriptor<Texture>(AssetPaths.BACKGROUND_DISC,Texture.class);
     public static final AssetDescriptor<Texture> COVER_GAME4 =
             new AssetDescriptor<Texture>(AssetPaths.COVER_GAME4, Texture.class);
     public static final AssetDescriptor<Texture> BACKGROUND_GAME4 =
@@ -183,6 +185,10 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.TRICHOMONAS, Texture.class);
     public static final AssetDescriptor<Texture> MIREILLE_FOOD =
             new AssetDescriptor<Texture>(AssetPaths.MIREILLE_FOOD, Texture.class);
+    public static final AssetDescriptor<Texture> LEGEND_FR =
+            new AssetDescriptor<Texture>(AssetPaths.LEGEND_FR, Texture.class);
+    public static final AssetDescriptor<Texture> LEGEND_EN =
+            new AssetDescriptor<Texture>(AssetPaths.LEGEND_EN, Texture.class);
     // STIDex
     public static final AssetDescriptor<Texture> DEX_BACK =
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);
