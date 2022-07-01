@@ -263,7 +263,8 @@ public class GameState {
         for (int i = 1; i < mBody.size; i++) {  //when dire reset to length 3
             if (mBody.get(i).getX() == mBody.first().getX() &&
                     mBody.get(i).getY() == mBody.first().getY()) {
-                snakeLength = 3;
+                game.destroyScreen(screen);
+                game.changeScreen(ScreenType.WORLD2);
             }
         }
 
