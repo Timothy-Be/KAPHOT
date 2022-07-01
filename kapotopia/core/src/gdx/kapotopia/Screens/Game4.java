@@ -141,6 +141,7 @@ public class Game4 implements Screen {
         else{
             this.legendImg = new Image(game.ass.get(AssetDescriptors.LEGEND_EN));
         }
+        this.legendImg.setVisible(false);
 
         this.stage = new Stage(game.viewport);
         this.stage.addActor(background);
@@ -148,6 +149,7 @@ public class Game4 implements Screen {
         this.stage.addActor(downArrow);
         this.stage.addActor(leftArrow);
         this.stage.addActor(upArrow);
+
 
 
         gameState = new GameState(game, this);
@@ -203,9 +205,7 @@ public class Game4 implements Screen {
                 if(gameState.isPaused()) {
                     legendImg.setVisible(true);
                     returnBtn.setVisible(true);
-                } else {
-                    legendImg.setVisible(false);
-                    returnBtn.setVisible(false);
+                    pauseBtn.setVisible(false);
                 }
                 Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + gameState.isPaused());
             }
@@ -217,6 +217,7 @@ public class Game4 implements Screen {
                 if(gameState.isPaused()) {
                     legendImg.setVisible(false);
                     returnBtn.setVisible(false);
+                    pauseBtn.setVisible(true);
                 }
                 Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + gameState.isPaused());
             }
@@ -243,7 +244,7 @@ public class Game4 implements Screen {
 
         legendBtn = new ImageTextButtonBuilder(game, loc.getString("legend_button"))
                 .withFontStyle(normalFont).withAlignment(Alignement.CENTER)
-                .withY((gameState.getBounds().getHeight() / 2) - 2*BTN_SPACING)
+                .withY((gameState.getBounds().getHeight() / 2) - BTN_SPACING)
                 .isVisible(false)
                 .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
                 .withPadding(Padding.STANDARD)
@@ -252,7 +253,7 @@ public class Game4 implements Screen {
 
         returnBtn = new ImageTextButtonBuilder(game, loc.getString("previous_button"))
                 .withFontStyle(normalFont)
-                .withPosition(50, (gameState.getBounds().getHeight() / 2) - BTN_SPACING)
+                .withPosition((gameState.getBounds().getWidth()) - 50, (gameState.getBounds().getHeight()) - BTN_SPACING)
                 .isVisible(false)
                 .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
                 .withPadding(Padding.STANDARD)
@@ -262,11 +263,12 @@ public class Game4 implements Screen {
         stage.addActor(quitBtn);
         stage.addActor(pauseBtn);
         stage.addActor(legendBtn);
-        stage.addActor(returnBtn);
 
         scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + gameState.getTotalScore()).withStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withPosition(50, screenHeight - 120).build();
         this.stage.addActor(scoreLabel);
+        this.stage.addActor(legendImg);
+        stage.addActor(returnBtn);
     }
 
     private void setDirection(int nextDirection){
