@@ -253,7 +253,7 @@ public class Game4 implements Screen {
 
         returnBtn = new ImageTextButtonBuilder(game, loc.getString("previous_button"))
                 .withFontStyle(normalFont)
-                .withPosition(screenWidth - 300, (gameState.getBounds().getHeight()) - BTN_SPACING)
+                .withPosition(screenWidth - 230, (gameState.getBounds().getHeight()) - BTN_SPACING)
                 .isVisible(false)
                 .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
                 .withPadding(Padding.STANDARD)
