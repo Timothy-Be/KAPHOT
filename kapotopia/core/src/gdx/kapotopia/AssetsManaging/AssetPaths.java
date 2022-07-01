@@ -88,7 +88,12 @@ public class AssetPaths {
     public static final String CHLAMYDIA = "IST/Chlamydia.png";
     public static final String GONORRHEE= "IST/Gonorrhee.png";
     public static final String TRICHOMONAS = "IST/Trichomonas.png";
-    public static final String MIREILLE_FOOD = "game4/mireille.png";
+    public static final String MIREILLE_FOOD = "game4/Mireille.png";
+
+    public static final String RED_SQUARE= "game4/red_square.png";
+    public static final String BLUE_SQUARE = "game4/blue_square.png";
+    public static final String GREEN_SQUARE = "game4/green_square.png";
+
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";

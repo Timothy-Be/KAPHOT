@@ -183,6 +183,14 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.TRICHOMONAS, Texture.class);
     public static final AssetDescriptor<Texture> MIREILLE_FOOD =
             new AssetDescriptor<Texture>(AssetPaths.MIREILLE_FOOD, Texture.class);
+
+    public static final AssetDescriptor<Texture> RED_SQUARE =
+            new AssetDescriptor<Texture>(AssetPaths.RED_SQUARE, Texture.class);
+    public static final AssetDescriptor<Texture> GREEN_SQUARE =
+            new AssetDescriptor<Texture>(AssetPaths.GREEN_SQUARE, Texture.class);
+    public static final AssetDescriptor<Texture> BLUE_SQUARE =
+            new AssetDescriptor<Texture>(AssetPaths.BLUE_SQUARE, Texture.class);
+
     // STIDex
     public static final AssetDescriptor<Texture> DEX_BACK =
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);

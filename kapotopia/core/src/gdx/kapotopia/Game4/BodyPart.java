@@ -1,8 +1,11 @@
 package gdx.kapotopia.Game4;
 
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+
 public class BodyPart {
     private float x;
     private float y;
+    private ImageButton ib;
 
     public BodyPart(float x, float y, int boardSize) {
         this.x  = x % (boardSize - 2);
@@ -21,5 +24,13 @@ public class BodyPart {
 
     public float getY() {
         return y;
+    }
+
+    public ImageButton getIb() {
+        return ib;
+    }
+
+    public void setIb(ImageButton ib) {
+        this.ib = ib;
     }
 }

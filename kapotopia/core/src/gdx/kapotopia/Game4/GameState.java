@@ -3,26 +3,35 @@ package gdx.kapotopia.Game4;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.text.View;
 
+import gdx.kapotopia.AssetsManaging.AssetDescriptors;
+import gdx.kapotopia.Helpers.Builders.ImageBuilder;
+import gdx.kapotopia.Helpers.Builders.ImageButtonBuilder;
 import gdx.kapotopia.Kapotopia;
 import gdx.kapotopia.ScreenType;
+import gdx.kapotopia.Screens.Game4;
 
 public class GameState {
 
     private final String TAG = this.getClass().getSimpleName();
 
     private Kapotopia game;
-    Screen screen;
+    Game4 screen;
 
     private int totalScore;
 
@@ -40,19 +49,46 @@ public class GameState {
     private boolean isFinish;
     private final Rectangle bounds;
 
+    //private final Texture IST;
+
     private float mTimer = 0;
 
-    public GameState(Kapotopia game, Screen screen) {
+    public GameState(Kapotopia game, Game4 screen) {
         this.game = game;
         this.screen = screen;
         this.isPaused = false;
         this.bounds = new Rectangle(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight());
 
-        this.totalScore = 0;
+        //IST = game.vars.getChosenSTD();
 
-        mBody.addLast(new BodyPart(15,15, boardSize));
-        mBody.addLast(new BodyPart(15,14, boardSize));
-        mBody.addLast(new BodyPart(15,13, boardSize));
+        this.totalScore = 0;
+        float scaleSnake = game.viewport.getWorldWidth()/snakeSize;
+        BodyPart bp1 = new BodyPart(15,15, boardSize);
+        mBody.addLast(bp1);
+        ImageButton img1 = new ImageButtonBuilder()
+                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withBounds(bp1.getX()*scaleSnake + xOffset, bp1.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                .build();
+        screen.getStage().addActor(img1);
+        bp1.setIb(img1);
+
+        BodyPart bp2 = new BodyPart(15,14, boardSize);
+        mBody.addLast(bp2);
+        ImageButton img2 = new ImageButtonBuilder()
+                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withBounds(bp2.getX()*scaleSnake + xOffset, bp2.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                .build();
+        screen.getStage().addActor(img2);
+        bp2.setIb(img2);
+
+        BodyPart bp3 = new BodyPart(15,13, boardSize);
+        mBody.addLast(bp3);
+        ImageButton img3 = new ImageButtonBuilder()
+                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withBounds(bp3.getX()*scaleSnake + xOffset, bp3.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                .build();
+        screen.getStage().addActor(img3);
+        bp3.setIb(img3);
     }
 
     public void setDirection(int nextDirection){
@@ -93,7 +129,10 @@ public class GameState {
             mTimer += delta;
             long timestamp = System.currentTimeMillis() / 1000; // time in seconds
             if (timestamp % 4 == 0 && timestamp != prevtime) {
-                foods.add(new Food(snakeSize));
+                float width = game.viewport.getWorldWidth();
+                float scaleSnake = width/snakeSize;
+                Food f = new Food(snakeSize, screen, scaleSnake, xOffset, yOffset, game);
+                foods.add(f);
                 if (foods.size() == 11) {   //max 10 foods on screen
                     foods.remove(0);
                 }
@@ -111,21 +150,57 @@ public class GameState {
     private void advance() {
         float headX = mBody.first().getX();
         float headY = mBody.first().getY();
+        float scaleSnake = game.viewport.getWorldWidth()/snakeSize;
         switch(this.direction) {
             case 0: //up
-                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
+                BodyPart bp = new BodyPart(headX, headY+1, boardSize);
+                mBody.addFirst(bp);
+                ImageButton img1 = new ImageButtonBuilder()
+                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withBounds(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                        .build();
+                screen.getStage().addActor(img1);
+                bp.setIb(img1);
                 break;
             case 1: //right
-                mBody.addFirst(new BodyPart(headX+1, headY, boardSize));
+                BodyPart bp1 = new BodyPart(headX+1, headY, boardSize);
+                mBody.addFirst(bp1);
+                ImageButton img2 = new ImageButtonBuilder()
+                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withBounds(bp1.getX()*scaleSnake + xOffset, bp1.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                        .build();
+                screen.getStage().addActor(img2);
+                bp1.setIb(img2);
                 break;
             case 2: //down
-                mBody.addFirst(new BodyPart(headX, headY-1, boardSize));
+                BodyPart bp2 = new BodyPart(headX, headY-1, boardSize);
+                mBody.addFirst(bp2);
+                ImageButton img3 = new ImageButtonBuilder()
+                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withBounds(bp2.getX()*scaleSnake + xOffset, bp2.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                        .build();
+                screen.getStage().addActor(img3);
+                bp2.setIb(img3);
                 break;
             case 3: //left
-                mBody.addFirst(new BodyPart(headX-1, headY, boardSize));
+                BodyPart bp3 = new BodyPart(headX-1, headY, boardSize);
+                mBody.addFirst(bp3);
+                ImageButton img4 = new ImageButtonBuilder()
+                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withBounds(bp3.getX()*scaleSnake + xOffset, bp3.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                        .build();
+                screen.getStage().addActor(img4);
+                bp3.setIb(img4);
                 break;
             default://should never happen
-                mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
+                BodyPart bp4 = new BodyPart(headX, headY+1, boardSize);
+                mBody.addFirst(bp4);
+                ImageButton img5 = new ImageButtonBuilder()
+                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withBounds(bp4.getX()*scaleSnake + xOffset, bp4.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                        .build();
+                screen.getStage().addActor(img5);
+                bp4.setIb(img5);
                 break;
         }
 
@@ -144,6 +219,8 @@ public class GameState {
                 } else { //should never happen
                     snakeLength++;
                 }
+                f.getSqr().remove();
+                f.getLogo().remove();
                 foods.remove(f);
             }
         }
@@ -156,6 +233,7 @@ public class GameState {
         }
 
         while (mBody.size - 1 >= snakeLength) {
+            mBody.last().getIb().remove();
             mBody.removeLast();
         }
     }
@@ -167,21 +245,14 @@ public class GameState {
         //snake
         float scaleSnake = width/snakeSize;
         for (BodyPart bp : mBody) {
-            shapeRenderer.rect(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
-        }
-
-        //Food
-        for (Food f: foods) {
-            if (f.getType() < 3) {
-                shapeRenderer.setColor(1,0,0,1);
-            } else if (f.getType() == 3) {
-                shapeRenderer.setColor(0,1,0,1);
-            } else if (f.getType() == 4){
-                shapeRenderer.setColor(0,0,1,1);
-            } else { //should never happen
-                shapeRenderer.setColor(1,0,0,1);
-            }
-            shapeRenderer.rect(f.getX() * scaleSnake + xOffset, f.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake);
+            bp.getIb().remove();
+            ImageButton img = new ImageButtonBuilder()
+                    .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                    .withBounds(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
+                    .build();
+            screen.getStage().addActor(img);
+            bp.setIb(img);
+            //shapeRenderer.rect(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 
         shapeRenderer.setColor(1,1,1,1);
