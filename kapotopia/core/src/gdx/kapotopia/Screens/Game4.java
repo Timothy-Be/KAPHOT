@@ -63,15 +63,10 @@ public class Game4 implements Screen {
         this.game = game;
         this.loc = game.loc;
         gameState = new GameState(game, this);
-
-<<<<<<< Updated upstream
-        screenWidth = game.viewport.getWorldWidth();
-        screenHeight = game.viewport.getWorldHeight();
-=======
+        
         screenWidth = game.viewport.getScreenWidth();
         screenHeight = game.viewport.getScreenHeight();
         this.normalFont = FontHelper.CLASSIC_SANS_NORMAL_WHITE;
->>>>>>> Stashed changes
 
         this.camera = new OrthographicCamera(screenWidth, screenHeight);
         game.viewport.setCamera(camera);
