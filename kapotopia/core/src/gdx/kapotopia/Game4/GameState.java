@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Queue;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -35,12 +36,17 @@ public class GameState {
     private CopyOnWriteArrayList<Food> foods= new CopyOnWriteArrayList<Food>();
     private int snakeLength = 3;
     long prevtime = 0;
+    private boolean isPaused;
+    private boolean isFinish;
+    private final Rectangle bounds;
 
     private float mTimer = 0;
 
     public GameState(Kapotopia game, Screen screen) {
         this.game = game;
         this.screen = screen;
+        this.isPaused = false;
+        this.bounds = new Rectangle(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight());
 
         this.totalScore = 0;
 
@@ -61,25 +67,45 @@ public class GameState {
         }
     }
 
-    public int getTotalScore(){
+    public int getTotalScore() {
         return this.totalScore;
     }
 
+    public void updateOnPause() {
+        isPaused = true;
+    }
+
+    public void updateOnResume() {
+        isPaused = true;
+    }
+
+    public void resumeFromPause() {
+        isPaused = false;
+    }
+
+    public void updateOnHide() {
+        isPaused = true;
+        Gdx.app.debug(TAG, "game hidden - isPaused is true");
+    }
+
     public void update(float delta, Viewport viewport) {
-        mTimer += delta;
-        long timestamp = System.currentTimeMillis() / 1000; // time in seconds
-        if (timestamp % 4 == 0 && timestamp != prevtime) {
-            foods.add(new Food(snakeSize));
-            if (foods.size() == 11) {   //max 10 foods on screen
-                foods.remove(0);
+        if (!isPaused()){
+            mTimer += delta;
+            long timestamp = System.currentTimeMillis() / 1000; // time in seconds
+            if (timestamp % 4 == 0 && timestamp != prevtime) {
+                foods.add(new Food(snakeSize));
+                if (foods.size() == 11) {   //max 10 foods on screen
+                    foods.remove(0);
+                }
+            }
+            prevtime = timestamp;
+
+            if (mTimer > 0.13f) { //change 0.13f to change snake speed
+                mTimer = 0;
+                advance();
             }
         }
-        prevtime = timestamp;
 
-        if (mTimer > 0.13f) { //change 0.13f to change snake speed
-            mTimer = 0;
-            advance();
-        }
     }
 
     private void advance() {
@@ -163,5 +189,19 @@ public class GameState {
 
         shapeRenderer.end();
 
+    }
+
+    // GETTERS
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public boolean isFinish() {
+        return isFinish;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
     }
 }
