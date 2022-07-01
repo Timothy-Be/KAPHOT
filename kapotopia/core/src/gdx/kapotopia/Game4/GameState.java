@@ -49,7 +49,7 @@ public class GameState {
     private boolean isFinish;
     private final Rectangle bounds;
 
-    //private final Texture IST;
+    private final Texture IST;
 
     private float mTimer = 0;
 
@@ -59,14 +59,48 @@ public class GameState {
         this.isPaused = false;
         this.bounds = new Rectangle(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight());
 
-        //IST = game.vars.getChosenSTD();
+        switch (game.vars.getChosenSTD()){
+            case 0:
+                IST = game.ass.get(AssetDescriptors.VIH);
+                break;
+            case 1:
+                IST = game.ass.get(AssetDescriptors.HEPA);
+                break;
+            case 2:
+                IST = game.ass.get(AssetDescriptors.HEPB);
+                break;
+            case 3:
+                IST = game.ass.get(AssetDescriptors.HEPC);
+                break;
+            case 4:
+                IST = game.ass.get(AssetDescriptors.SYPHILIS);
+                break;
+            case 5:
+                IST = game.ass.get(AssetDescriptors.HERPES);
+                break;
+            case 6:
+                IST = game.ass.get(AssetDescriptors.PAPILLO);
+                break;
+            case 7:
+                IST = game.ass.get(AssetDescriptors.CHLAMYDIA);
+                break;
+            case 8:
+                IST = game.ass.get(AssetDescriptors.GONORRHEE);
+                break;
+            case 9:
+                IST = game.ass.get(AssetDescriptors.TRICHOMONAS);
+                break;
+            default: //should never happen
+                IST = game.ass.get(AssetDescriptors.TRICHOMONAS);
+        }
+
 
         this.totalScore = 0;
         float scaleSnake = game.viewport.getWorldWidth()/snakeSize;
         BodyPart bp1 = new BodyPart(15,15, boardSize);
         mBody.addLast(bp1);
         ImageButton img1 = new ImageButtonBuilder()
-                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withImageUp(IST)
                 .withBounds(bp1.getX()*scaleSnake + xOffset, bp1.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                 .build();
         screen.getStage().addActor(img1);
@@ -75,7 +109,7 @@ public class GameState {
         BodyPart bp2 = new BodyPart(15,14, boardSize);
         mBody.addLast(bp2);
         ImageButton img2 = new ImageButtonBuilder()
-                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withImageUp(IST)
                 .withBounds(bp2.getX()*scaleSnake + xOffset, bp2.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                 .build();
         screen.getStage().addActor(img2);
@@ -84,7 +118,7 @@ public class GameState {
         BodyPart bp3 = new BodyPart(15,13, boardSize);
         mBody.addLast(bp3);
         ImageButton img3 = new ImageButtonBuilder()
-                .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                .withImageUp(IST)
                 .withBounds(bp3.getX()*scaleSnake + xOffset, bp3.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                 .build();
         screen.getStage().addActor(img3);
@@ -156,7 +190,7 @@ public class GameState {
                 BodyPart bp = new BodyPart(headX, headY+1, boardSize);
                 mBody.addFirst(bp);
                 ImageButton img1 = new ImageButtonBuilder()
-                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withImageUp(IST)
                         .withBounds(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                         .build();
                 screen.getStage().addActor(img1);
@@ -166,7 +200,7 @@ public class GameState {
                 BodyPart bp1 = new BodyPart(headX+1, headY, boardSize);
                 mBody.addFirst(bp1);
                 ImageButton img2 = new ImageButtonBuilder()
-                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withImageUp(IST)
                         .withBounds(bp1.getX()*scaleSnake + xOffset, bp1.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                         .build();
                 screen.getStage().addActor(img2);
@@ -176,7 +210,7 @@ public class GameState {
                 BodyPart bp2 = new BodyPart(headX, headY-1, boardSize);
                 mBody.addFirst(bp2);
                 ImageButton img3 = new ImageButtonBuilder()
-                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withImageUp(IST)
                         .withBounds(bp2.getX()*scaleSnake + xOffset, bp2.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                         .build();
                 screen.getStage().addActor(img3);
@@ -186,7 +220,7 @@ public class GameState {
                 BodyPart bp3 = new BodyPart(headX-1, headY, boardSize);
                 mBody.addFirst(bp3);
                 ImageButton img4 = new ImageButtonBuilder()
-                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withImageUp(IST)
                         .withBounds(bp3.getX()*scaleSnake + xOffset, bp3.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                         .build();
                 screen.getStage().addActor(img4);
@@ -196,7 +230,7 @@ public class GameState {
                 BodyPart bp4 = new BodyPart(headX, headY+1, boardSize);
                 mBody.addFirst(bp4);
                 ImageButton img5 = new ImageButtonBuilder()
-                        .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                        .withImageUp(IST)
                         .withBounds(bp4.getX()*scaleSnake + xOffset, bp4.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                         .build();
                 screen.getStage().addActor(img5);
@@ -204,6 +238,7 @@ public class GameState {
                 break;
         }
 
+        //see if food is eaten
         for (Food f: foods) {
             if (mBody.first().getX() == f.getX() && mBody.first().getY() == f.getY()) {
                 if (f.getType() < 3) {
@@ -247,7 +282,7 @@ public class GameState {
         for (BodyPart bp : mBody) {
             bp.getIb().remove();
             ImageButton img = new ImageButtonBuilder()
-                    .withImageUp(game.ass.get(AssetDescriptors.SYPHILIS))
+                    .withImageUp(IST)
                     .withBounds(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake)
                     .build();
             screen.getStage().addActor(img);
