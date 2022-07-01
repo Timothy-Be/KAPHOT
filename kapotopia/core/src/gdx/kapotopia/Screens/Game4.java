@@ -138,16 +138,15 @@ public class Game4 implements Screen {
             @Override
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.BACK) {
-                    game.destroyScreen(ScreenType.GAME3);
+                    game.destroyScreen(ScreenType.GAME4);
                     game.changeScreen(ScreenType.WORLD2);
                     return true;
                 }
                 return false;
             }
         });
-
+        iM.addProcessor(stage);
         Gdx.input.setInputProcessor(iM);
-        Gdx.input.setInputProcessor(stage);
         game.getMusicControl().playMusic();
     }
 
