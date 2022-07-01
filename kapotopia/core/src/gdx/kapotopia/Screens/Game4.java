@@ -35,6 +35,8 @@ import gdx.kapotopia.Helpers.Padding;
 import gdx.kapotopia.Kapotopia;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import gdx.kapotopia.Languages;
 import gdx.kapotopia.Localisation;
 import gdx.kapotopia.ScreenType;
 
@@ -50,6 +52,9 @@ public class Game4 implements Screen {
     private ImageButton pauseIcon;
     private ImageTextButton quitBtn;
     private ImageTextButton pauseBtn;
+    private ImageTextButton legendBtn;
+    private ImageTextButton returnBtn;
+    private Image legendImg;
     private final float BTN_SPACING = 90f;
     private Font normalFont;
 
@@ -65,7 +70,7 @@ public class Game4 implements Screen {
     public Game4(final Kapotopia game) {
         this.game = game;
         this.loc = game.loc;
-        
+
         screenWidth = game.viewport.getWorldWidth();
         screenHeight = game.viewport.getWorldHeight();
         this.normalFont = FontHelper.CLASSIC_SANS_NORMAL_WHITE;
@@ -130,12 +135,20 @@ public class Game4 implements Screen {
 
         Image background = new Image(game.ass.get(AssetDescriptors.BACKGROUND_GAME4));
 
+        if (game.loc.getChosenLanguage() == Languages.FRENCH){
+            this.legendImg = new Image(game.ass.get(AssetDescriptors.LEGEND_FR));
+        }
+        else{
+            this.legendImg = new Image(game.ass.get(AssetDescriptors.LEGEND_EN));
+        }
+
         this.stage = new Stage(game.viewport);
         this.stage.addActor(background);
         this.stage.addActor(rightArrow);
         this.stage.addActor(downArrow);
         this.stage.addActor(leftArrow);
         this.stage.addActor(upArrow);
+
 
         gameState = new GameState(game, this);
 
@@ -184,10 +197,35 @@ public class Game4 implements Screen {
             }
         };
 
+        EventListener legendEvent = new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(gameState.isPaused()) {
+                    legendImg.setVisible(true);
+                    returnBtn.setVisible(true);
+                } else {
+                    legendImg.setVisible(false);
+                    returnBtn.setVisible(false);
+                }
+                Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + gameState.isPaused());
+            }
+        };
+
+        EventListener returnEvent = new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(gameState.isPaused()) {
+                    legendImg.setVisible(false);
+                    returnBtn.setVisible(false);
+                }
+                Gdx.app.debug(TAG, "pauseLabel clicked - isPaused is " + gameState.isPaused());
+            }
+        };
+
         quitBtn = new ImageTextButtonBuilder(game, loc.getString("quit_button_text"))
                 .withFontStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withAlignment(Alignement.CENTER)
-                .withY((gameState.getBounds().getHeight() / 2) - BTN_SPACING)
+                .withY((gameState.getBounds().getHeight() / 2) - 2*BTN_SPACING)
                 .withPadding(Padding.STANDARD)
                 .withListener(quitEvent)
                 .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
@@ -203,8 +241,29 @@ public class Game4 implements Screen {
                 .withListener(pauseEvent)
                 .build();
 
+        legendBtn = new ImageTextButtonBuilder(game, loc.getString("legend_button"))
+                .withFontStyle(normalFont).withAlignment(Alignement.CENTER)
+                .withY((gameState.getBounds().getHeight() / 2) - 2*BTN_SPACING)
+                .isVisible(false)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
+                .withPadding(Padding.STANDARD)
+                .withListener(legendEvent)
+                .build();
+
+        returnBtn = new ImageTextButtonBuilder(game, loc.getString("previous_button"))
+                .withFontStyle(normalFont)
+                .withPosition(50, (gameState.getBounds().getHeight() / 2) - BTN_SPACING)
+                .isVisible(false)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_ROCK))
+                .withPadding(Padding.STANDARD)
+                .withListener(returnEvent)
+                .build();
+
         stage.addActor(quitBtn);
         stage.addActor(pauseBtn);
+        stage.addActor(legendBtn);
+        stage.addActor(returnBtn);
+
         scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + gameState.getTotalScore()).withStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withPosition(50, screenHeight - 120).build();
         this.stage.addActor(scoreLabel);
@@ -225,11 +284,13 @@ public class Game4 implements Screen {
     public void updateWhenResumeFromPause() {
         pauseBtn.setVisible(false);
         quitBtn.setVisible(false);
+        legendBtn.setVisible(false);
     }
 
     public void updateAtPause() {
         pauseBtn.setVisible(true);
         quitBtn.setVisible(true);
+        legendBtn.setVisible(true);
     }
 
     @Override
