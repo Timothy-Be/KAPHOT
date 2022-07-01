@@ -17,6 +17,7 @@ import gdx.kapotopia.Music.MusicController;
 import gdx.kapotopia.STIDex.STI;
 import gdx.kapotopia.Screens.BilanG1;
 import gdx.kapotopia.Screens.ChoosingDifficultyScreen;
+import gdx.kapotopia.Screens.ChoosingSTDScreen;
 import gdx.kapotopia.Screens.Game1;
 import gdx.kapotopia.Screens.Game2;
 import gdx.kapotopia.Screens.Game3;
@@ -73,6 +74,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 	private World3 world3;
 	private STIDex STIDex;
 	private ChoosingDifficultyScreen dif;
+	private ChoosingSTDScreen STDGAME4;
 	private Options options;
 	private IntroCutscene introCutscene;
 
@@ -295,6 +297,8 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 			return destroyScreen(ScreenType.GAME2);
 		} else if(sc == game3) {
 			return destroyScreen(ScreenType.GAME3);
+		} else if (sc == game4) {
+			return destroyScreen(ScreenType.GAME4);
 		} else if(sc == mainMenu) {
 			return destroyScreen(ScreenType.MAINMENU);
 		} else if(sc == mockupG1) {
@@ -317,6 +321,8 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		    return destroyScreen(ScreenType.OPTIONS);
         } else if(sc == introCutscene) {
 			return destroyScreen(ScreenType.INTROCUTSCENE);
+		} else if (sc == STDGAME4) {
+			return destroyScreen(ScreenType.STDGAME4);
 		}
 
 		return false;
@@ -331,6 +337,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		destroyScreen(ScreenType.GAME1);
 		destroyScreen(ScreenType.GAME2);
 		destroyScreen(ScreenType.GAME3);
+		destroyScreen(ScreenType.GAME4);
 		destroyScreen(ScreenType.MAINMENU);
 		destroyScreen(ScreenType.MOCKUPG1);
 		destroyScreen(ScreenType.MOCKUPG2);
@@ -341,6 +348,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		destroyScreen(ScreenType.WORLD3);
 		destroyScreen(ScreenType.STIDEX);
 		destroyScreen(ScreenType.DIFGAME1);
+		destroyScreen(ScreenType.STDGAME4);
 		destroyScreen(ScreenType.OPTIONS);
 		destroyScreen(ScreenType.INTROCUTSCENE);
 		changeScreen(nextScreen);
@@ -595,6 +603,22 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 						break;
 				}
 				break;
+			case STDGAME4:
+				switch (ACTION) {
+					case CHANGE:
+						if (STDGAME4 == null) STDGAME4 = new ChoosingSTDScreen(this);
+						setScreen(STDGAME4);
+						succeeded = true;
+						break;
+					case DESTROY:
+						if (STDGAME4 != null) {
+							STDGAME4.dispose();
+							STDGAME4 = null;
+							succeeded = true;
+						}
+						break;
+				}
+				break;
             case OPTIONS:
                 switch (ACTION) {
                     case CHANGE:
@@ -693,6 +717,10 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 
 	public MusicController getMusicControl() {
 		return musicControl;
+	}
+
+	public ChoosingSTDScreen getChoosingSTDScreen() {
+		return STDGAME4;
 	}
 
 	private enum ScreenAction {

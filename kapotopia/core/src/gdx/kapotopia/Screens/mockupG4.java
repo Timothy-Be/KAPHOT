@@ -126,20 +126,20 @@ public class mockupG4 extends CinematicScreen {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
                         resetScreen();
-                        game.changeScreen(ScreenType.GAME4);
+                        game.changeScreen(ScreenType.STDGAME4);
                     }
                 })
                 .build();
 
 
-        this.applyBundle(new ParameterBundleBuilder(ScreenType.GAME4) // changed from GAME4
+        this.applyBundle(new ParameterBundleBuilder(ScreenType.STDGAME4) // changed from GAME4
                 .withImages(images)
                 .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
                 .withTimerScheduleTime(0)
                 .withLabels(labels)
-                .withFinishBtn(true)
+                .withFinishBtn(false)
         );
 
         getStage().addActor(skipBtn);

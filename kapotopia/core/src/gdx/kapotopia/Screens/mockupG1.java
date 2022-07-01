@@ -211,7 +211,8 @@ public class mockupG1 extends CinematicScreen {
         skipBtn = new ImageTextButtonBuilder(game, game.loc.getString("skip_button"))
                 .withFontStyle(FontHelper.AESTHETIC_NORMAL_WHITE)
                 .withPosition(game.viewport.getWorldWidth() * 0.75f, this.game.viewport.getWorldHeight() / 30f)
-                .withImageStyle(game.ass.get(AssetDescriptors.BTN_WOOD)).isVisible(true)
+                .withImageStyle(game.ass.get(AssetDescriptors.BTN_WOOD))
+                .isVisible(true)
                 .withPadding(Padding.STANDARD)
                 .withListener(new ChangeListener() {
                     @Override
@@ -225,8 +226,13 @@ public class mockupG1 extends CinematicScreen {
 
         /* ENDING */
         applyBundle(new ParameterBundleBuilder(ScreenType.DIFGAME1)
-                .withImages(images).withFinishBtn(false).withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE).withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
-                .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE).withTimerScheduleTime(0).withLabels(labels));
+                .withImages(images)
+                .withFinishBtn(false)
+                .withPreviousBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withFinishBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withNextBtnStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withTimerScheduleTime(0)
+                .withLabels(labels));
         getStage().addActor(skipBtn);
 
         // Setting up the music

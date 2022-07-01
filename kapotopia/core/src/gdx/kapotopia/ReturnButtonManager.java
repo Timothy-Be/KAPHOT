@@ -26,6 +26,7 @@ public class ReturnButtonManager {
         this.previousScreens.put(ScreenType.WORLD3, ScreenType.MAINMENU);
         this.previousScreens.put(ScreenType.STIDEX, ScreenType.MAINMENU);
         this.previousScreens.put(ScreenType.DIFGAME1, ScreenType.WORLD1);
+        this.previousScreens.put(ScreenType.STDGAME4, ScreenType.WORLD2);
         this.previousScreens.put(ScreenType.OPTIONS, ScreenType.MAINMENU);
         this.returnScreen = previousScreens.get(ScreenType.INTROCUTSCENE);
     }

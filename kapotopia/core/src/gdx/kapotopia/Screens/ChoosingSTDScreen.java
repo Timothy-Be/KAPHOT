@@ -7,12 +7,17 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.utils.Timer;
+
+import org.graalvm.compiler.hotspot.IsGraalPredicate;
 
 import gdx.kapotopia.AssetsManaging.AssetDescriptors;
+import gdx.kapotopia.GameDifficulty;
 import gdx.kapotopia.Helpers.Builders.ImageButtonBuilder;
 import gdx.kapotopia.Helpers.ChangeScreenListener;
 import gdx.kapotopia.Helpers.StandardInputAdapter;
@@ -29,16 +34,21 @@ public class ChoosingSTDScreen implements Screen {
     private Sound clicBlockedSound;
     private Sound pauseSound;
 
+    private final ScreenType nextScreen;
+
     public ChoosingSTDScreen(Kapotopia game) {
         this.game = game;
         this.stage = new Stage(game.viewport);
         this.camera = new OrthographicCamera(game.viewport.getWorldWidth(), game.viewport.getWorldHeight());
         this.camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f,0);
+        game.viewport.setCamera(camera);
         this.camera.update();
 
         this.clic = game.ass.get(AssetDescriptors.SOUND_CLICKED_BTN);
         this.clicBlockedSound = game.ass.get(AssetDescriptors.SOUND_HINT);
         this.pauseSound = game.ass.get(AssetDescriptors.SOUND_PAUSE);
+
+        this.nextScreen = game.vars.getNextScreenOfChoosingDifScreen();
 
         int screenHeight = game.viewport.getScreenHeight();
         int screenWidth = game.viewport.getScreenWidth();
@@ -64,32 +74,32 @@ public class ChoosingSTDScreen implements Screen {
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton SYPH_square = new ImageButtonBuilder()
-                .withBounds(0,2*screenHeight/5f, screenWidth/2f, screenHeight/5f)
+                .withPosition(0,2*screenHeight/7f)
                 .withImageUp(game.ass.get(AssetDescriptors.YELLOW_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton HERP_square = new ImageButtonBuilder()
-                .withBounds(screenWidth/2f,2*screenHeight/5f, screenWidth/2f, screenHeight/5f)
+                .withPosition(screenWidth/3f,2*screenHeight/7f)
                 .withImageUp(game.ass.get(AssetDescriptors.PALEBLUE_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton PAPIL_square = new ImageButtonBuilder()
-                .withBounds(0,screenHeight/5f, screenWidth/2f, screenHeight/5f)
+                .withPosition(0,screenHeight/8f)
                 .withImageUp(game.ass.get(AssetDescriptors.PALEBLUE_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton CHLA_square = new ImageButtonBuilder()
-                .withBounds(screenWidth/2f,screenHeight/5f, screenWidth/2f, screenHeight/5f)
+                .withPosition(screenWidth/3f, screenHeight/8f)
                 .withImageUp(game.ass.get(AssetDescriptors.YELLOW_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton GONO_square = new ImageButtonBuilder()
-                .withBounds(0,0, screenWidth/2f, screenHeight/5f)
+                .withPosition(0,0)
                 .withImageUp(game.ass.get(AssetDescriptors.YELLOW_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
         ImageButton TRICH_square = new ImageButtonBuilder()
-                .withBounds(screenWidth/2f,0, screenWidth/2f, screenHeight/5f)
+                .withPosition(screenWidth/3f,0)
                 .withImageUp(game.ass.get(AssetDescriptors.PALEBLUE_BACK))
                 .withListener(new ChangeScreenListener(game, ScreenType.GAME4))
                 .build();
@@ -108,7 +118,7 @@ public class ChoosingSTDScreen implements Screen {
 
     @Override
     public void show() {
-        setUpInputProcessor();
+        Gdx.input.setInputProcessor(stage);
     }
 
     /**
@@ -128,7 +138,7 @@ public class ChoosingSTDScreen implements Screen {
 
         camera.update();
 
-        stage.act(delta);
+        stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
 
