@@ -48,8 +48,8 @@ public class Game4 implements Screen {
         this.loc = game.loc;
         gameState = new GameState(game, this);
 
-        screenWidth = game.viewport.getScreenWidth();
-        screenHeight = game.viewport.getScreenHeight();
+        screenWidth = game.viewport.getWorldWidth();
+        screenHeight = game.viewport.getWorldHeight();
 
         this.camera = new OrthographicCamera(screenWidth, screenHeight);
         game.viewport.setCamera(camera);
@@ -66,7 +66,7 @@ public class Game4 implements Screen {
 
         ImageButton rightArrow = new ImageButtonBuilder()
                 .withImageUp(arrow1)
-                .withPosition(screenWidth/2 + 60, screenHeight/9 - 10)
+                .withPosition(screenWidth/2 + 125, screenHeight/11)
                 .withListener(new InputListener() {
                     public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                         setDirection(1);
@@ -77,7 +77,7 @@ public class Game4 implements Screen {
 
         ImageButton downArrow = new ImageButtonBuilder()
                 .withImageUp(arrow2)
-                .withPosition(screenWidth/2 - 31, screenHeight/20 - 15)
+                .withPosition(screenWidth/2 -31, screenHeight/20 - 20)
                 .withListener(new InputListener() {
                     public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                         setDirection(2);
@@ -88,7 +88,7 @@ public class Game4 implements Screen {
 
         ImageButton leftArrow = new ImageButtonBuilder()
                 .withImageUp(arrow3)
-                .withPosition(screenWidth/3 + 10, screenHeight/9 - 10)
+                .withPosition(screenWidth/3 - 50, screenHeight/11)
                 .withListener(new InputListener() {
                     public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                         setDirection(3);
@@ -99,10 +99,9 @@ public class Game4 implements Screen {
 
         ImageButton upArrow = new ImageButtonBuilder()
                 .withImageUp(arrow4)
-                .withPosition(screenWidth/2 - 31, screenHeight/6 + 15)
+                .withPosition(screenWidth/2 - 31, screenHeight/7 + 10)
                 .withListener(new InputListener() {
                     public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                        System.out.println("yop");
                         setDirection(0);
                         return true;
                     }

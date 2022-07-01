@@ -23,10 +23,13 @@ public class GameState {
     private Kapotopia game;
     Screen screen;
 
+    private int screenWidth;
+    private int screenHeight;
+
     private int snakeSize = 10;  //  10-15 squares square
-    private int boardSize = 12;
+    private int boardSize = 11; //12
     private int yOffset = 308;
-    private int xOffset = 20;
+    private int xOffset = 30;
     private int direction = 0;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
@@ -39,6 +42,12 @@ public class GameState {
     public GameState(Kapotopia game, Screen screen) {
         this.game = game;
         this.screen = screen;
+
+        screenWidth = game.viewport.getScreenWidth(); //720 1080
+        screenHeight = game.viewport.getScreenHeight(); //1193 1920
+
+        System.out.println(screenWidth);
+        System.out.println(screenHeight);
 
         mBody.addLast(new BodyPart(15,15, boardSize));
         mBody.addLast(new BodyPart(15,14, boardSize));
