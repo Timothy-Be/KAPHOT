@@ -255,6 +255,16 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		// Sounds
 		this.ass.load(AssetDescriptors.MUSIC_GAME3);
 
+		//ASSETS FOR GAME 4
+		this.ass.load(AssetDescriptors.BACKGROUND_GAME4);
+		this.ass.load(AssetDescriptors.COVER_GAME4);
+		this.ass.load(AssetDescriptors.DOWN_ARROW4);
+		this.ass.load(AssetDescriptors.UP_ARROW4);
+		this.ass.load(AssetDescriptors.LEFT_ARROW4);
+		this.ass.load(AssetDescriptors.RIGHT_ARROW4);
+		this.ass.load(AssetDescriptors.PAUSE_LOGO4);
+		this.ass.load(AssetDescriptors.PLAY_LOGO4);
+
 		// IST-INDEX
 		this.ass.load(AssetDescriptors.CLOSE);
 
@@ -305,6 +315,10 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 			return destroyScreen(ScreenType.MOCKUPG1);
 		} else if(sc == mockupG2) {
 			return destroyScreen(ScreenType.MOCKUPG2);
+		} else if(sc == mockupG3) {
+			return destroyScreen(ScreenType.MOCKUPG3);
+		} else if(sc == mockupG4) {
+			return destroyScreen(ScreenType.MOCKUPG4);
 		} else if(sc == bilanG1) {
 			return destroyScreen(ScreenType.BILANG1);
 		} else if(sc == world1) {
@@ -342,6 +356,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		destroyScreen(ScreenType.MOCKUPG1);
 		destroyScreen(ScreenType.MOCKUPG2);
 		destroyScreen(ScreenType.MOCKUPG3);
+		destroyScreen(ScreenType.MOCKUPG4);
 		destroyScreen(ScreenType.BILANG1);
 		destroyScreen(ScreenType.WORLD1);
 		destroyScreen(ScreenType.WORLD2);

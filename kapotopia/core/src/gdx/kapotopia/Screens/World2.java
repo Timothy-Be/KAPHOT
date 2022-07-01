@@ -37,7 +37,7 @@ public class World2 implements Screen {
 
         this.game = game;
         Texture imgFondGame1 = game.ass.get(AssetDescriptors.MM1_W2);
-        Texture imgFondGame2 = game.ass.get(AssetDescriptors.MM2_W2);
+        Texture imgFondGame2 = game.ass.get(AssetDescriptors.COVER_GAME4);
 
         final Localisation loc = game.loc;
 
@@ -55,7 +55,6 @@ public class World2 implements Screen {
                 .withY(y*0.57f).withAlignment(Alignement.CENTER)
                 .withListener(new ChangeScreenListener(game,ScreenType.MOCKUPG3) {}).build();
 
-        ///////////////////////////////////////////// same as 1 for now ////////////////////////////////////////////////////
         final ImageButton imgButtonGame2 = new ImageButtonBuilder()
                 .withImageUp(imgFondGame2)
                 .withBounds(0,0, game.viewport.getWorldWidth(), game.viewport.getWorldHeight()/2)

@@ -1,25 +1,25 @@
 package gdx.kapotopia.Game4;
 
 public class BodyPart {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
-    public BodyPart(int x, int y, int boardsize) {
-        this.x  = x % boardsize;
+    public BodyPart(float x, float y, int boardSize) {
+        this.x  = x % (boardSize - 2);
         if (this.x<0) {
-            this.x += boardsize;
+            this.x += boardSize-2;
         }
-        this.y  = y % boardsize;
+        this.y  = y % boardSize;
         if (this.y<0) {
-            this.y += boardsize;
+            this.y += boardSize;
         }
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 }

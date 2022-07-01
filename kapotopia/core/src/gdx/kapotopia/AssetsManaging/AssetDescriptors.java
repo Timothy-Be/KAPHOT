@@ -135,6 +135,8 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.RIGHT_ARROW4, Texture.class);
     public static final AssetDescriptor<Texture> PAUSE_LOGO4 =
             new AssetDescriptor<Texture>(AssetPaths.PAUSE_LOGO4, Texture.class);
+    public static final AssetDescriptor<Texture> PLAY_LOGO4 =
+            new AssetDescriptor<Texture>(AssetPaths.PLAY_LOGO4, Texture.class);
     public static final AssetDescriptor<Texture> YELLOW_BACK =
             new AssetDescriptor<Texture>(AssetPaths.YELLOW_BACK, Texture.class);
     public static final AssetDescriptor<Texture> PALEBLUE_BACK =

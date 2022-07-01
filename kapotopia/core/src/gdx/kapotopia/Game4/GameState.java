@@ -22,11 +22,14 @@ public class GameState {
 
     private Kapotopia game;
     Screen screen;
-    private int boardSize = 10;  //  30 squares square
-    private int yOffset = 400;
+
+    private int snakeSize = 10;  //  10-15 squares square
+    private int boardSize = 12;
+    private int yOffset = 308;
+    private int xOffset = 20;
+    private int direction = 0;
     private ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Queue<BodyPart> mBody = new Queue<BodyPart>();
-    private Controls controls = new Controls();
     private CopyOnWriteArrayList<Food> foods= new CopyOnWriteArrayList<Food>();
     private int snakeLength = 3;
     long prevtime = 0;
@@ -36,17 +39,29 @@ public class GameState {
     public GameState(Kapotopia game, Screen screen) {
         this.game = game;
         this.screen = screen;
+
         mBody.addLast(new BodyPart(15,15, boardSize));
         mBody.addLast(new BodyPart(15,14, boardSize));
         mBody.addLast(new BodyPart(15,13, boardSize));
     }
 
+    public void setDirection(int nextDirection){
+        if (direction == 0 && nextDirection != 2) {
+            this.direction = nextDirection;
+        } else if (direction == 2 && nextDirection != 0) {
+            this.direction = nextDirection;
+        } else if (direction == 1 && nextDirection != 3){
+            this.direction = nextDirection;
+        } else if (direction == 3 && nextDirection != 1){
+            this.direction = nextDirection;
+        }
+    }
+
     public void update(float delta, Viewport viewport) {
         mTimer += delta;
-        controls.update(viewport);
         long timestamp = System.currentTimeMillis() / 1000; // time in seconds
         if (timestamp % 4 == 0 && timestamp != prevtime) {
-            foods.add(new Food(boardSize));
+            foods.add(new Food(snakeSize));
             if (foods.size() == 11) {   //max 10 foods on screen
                 foods.remove(0);
             }
@@ -60,9 +75,9 @@ public class GameState {
     }
 
     private void advance() {
-        int headX = mBody.first().getX();
-        int headY = mBody.first().getY();
-        switch(controls.getDirection()) {
+        float headX = mBody.first().getX();
+        float headY = mBody.first().getY();
+        switch(this.direction) {
             case 0: //up
                 mBody.addFirst(new BodyPart(headX, headY+1, boardSize));
                 break;
@@ -109,22 +124,14 @@ public class GameState {
         }
     }
 
-    public void draw(int width, int height, OrthographicCamera camera) {
+    public void draw(float width, float height, OrthographicCamera camera) {
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        shapeRenderer.setColor(1,1,1,1);
-        shapeRenderer.rect(0, yOffset, width, width);
-
-        shapeRenderer.setColor(0,0,0,1);
-        shapeRenderer.rect(5, yOffset+5, width-5*2, width-5*2);
-
-        shapeRenderer.setColor(1,1,1,1);
-
         //snake
-        float scaleSnake = width/boardSize;
+        float scaleSnake = width/snakeSize;
         for (BodyPart bp : mBody) {
-            shapeRenderer.rect(bp.getX()*scaleSnake, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
+            shapeRenderer.rect(bp.getX()*scaleSnake + xOffset, bp.getY()*scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 
         //Food
@@ -138,16 +145,11 @@ public class GameState {
             } else { //should never happen
                 shapeRenderer.setColor(1,0,0,1);
             }
-            shapeRenderer.rect(f.getX() * scaleSnake, f.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake);
+            shapeRenderer.rect(f.getX() * scaleSnake + xOffset, f.getY() * scaleSnake + yOffset, scaleSnake, scaleSnake);
         }
 
         shapeRenderer.setColor(1,1,1,1);
 
-        //buttons
-        shapeRenderer.rect(235, 265, 130, 135);
-        shapeRenderer.rect(235, 0, 130, 135);
-        shapeRenderer.rect(105,135,130,130);
-        shapeRenderer.rect(365,135,130,130);
 
         shapeRenderer.end();
 
