@@ -181,6 +181,8 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.GONORRHEE, Texture.class);
     public static final AssetDescriptor<Texture> TRICHOMONAS =
             new AssetDescriptor<Texture>(AssetPaths.TRICHOMONAS, Texture.class);
+    public static final AssetDescriptor<Texture> MIREILLE_FOOD =
+            new AssetDescriptor<Texture>(AssetPaths.MIREILLE_FOOD, Texture.class);
     // STIDex
     public static final AssetDescriptor<Texture> DEX_BACK =
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);
