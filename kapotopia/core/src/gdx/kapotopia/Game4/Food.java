@@ -14,7 +14,7 @@ public class Food {
     }
 
     public void randomisePos(int boardSize) {
-        x = MathUtils.random(boardSize-1);
+        x = MathUtils.random(boardSize-2);
         y = MathUtils.random(boardSize-1);
         type = MathUtils.random(4);
     }
