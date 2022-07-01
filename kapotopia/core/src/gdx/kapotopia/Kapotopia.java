@@ -151,6 +151,7 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		// Game 4
 		this.ass.load(AssetDescriptors.YELLOW_BACK);
 		this.ass.load(AssetDescriptors.PALEBLUE_BACK);
+
 		// IntroG1
 		this.ass.load(AssetDescriptors.DIF_PART1);
         this.ass.load(AssetDescriptors.JUNGLE);
@@ -264,6 +265,15 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		this.ass.load(AssetDescriptors.RIGHT_ARROW4);
 		this.ass.load(AssetDescriptors.PAUSE_LOGO4);
 		this.ass.load(AssetDescriptors.PLAY_LOGO4);
+		this.ass.load(AssetDescriptors.ANULINGUS);
+		this.ass.load(AssetDescriptors.CARESSES);
+		this.ass.load(AssetDescriptors.CUNNI);
+		this.ass.load(AssetDescriptors.SERINGUE_CHANGE);
+		this.ass.load(AssetDescriptors.EMBRASSADE);
+		this.ass.load(AssetDescriptors.FELLATION);
+		this.ass.load(AssetDescriptors.GANT);
+		this.ass.load(AssetDescriptors.PENE_VAGINALE);
+		this.ass.load(AssetDescriptors.PENE_ANALE);
 
 		// IST-INDEX
 		this.ass.load(AssetDescriptors.CLOSE);

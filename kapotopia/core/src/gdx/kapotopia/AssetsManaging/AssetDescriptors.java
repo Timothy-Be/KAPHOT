@@ -141,6 +141,27 @@ public class AssetDescriptors {
             new AssetDescriptor<Texture>(AssetPaths.YELLOW_BACK, Texture.class);
     public static final AssetDescriptor<Texture> PALEBLUE_BACK =
             new AssetDescriptor<Texture>(AssetPaths.PALEBLUE_BACK, Texture.class);
+    public static final AssetDescriptor<Texture> ANULINGUS =
+            new AssetDescriptor<Texture>(AssetPaths.ANULINGUS, Texture.class);
+    public static final AssetDescriptor<Texture> CARESSES =
+            new AssetDescriptor<Texture>(AssetPaths.CARESSES, Texture.class);
+    public static final AssetDescriptor<Texture> CUNNI =
+            new AssetDescriptor<Texture>(AssetPaths.CUNNI, Texture.class);
+    public static final AssetDescriptor<Texture> SERINGUE_CHANGE =
+            new AssetDescriptor<Texture>(AssetPaths.SERINGUE_CHANGE, Texture.class);
+    public static final AssetDescriptor<Texture> EMBRASSADE =
+            new AssetDescriptor<Texture>(AssetPaths.EMBRASSADE, Texture.class);
+    public static final AssetDescriptor<Texture> FELLATION =
+            new AssetDescriptor<Texture>(AssetPaths.FELLATION, Texture.class);
+    public static final AssetDescriptor<Texture> GANT =
+            new AssetDescriptor<Texture>(AssetPaths.GANT, Texture.class);
+    public static final AssetDescriptor<Texture> PENE_VAGINALE =
+            new AssetDescriptor<Texture>(AssetPaths.PENE_VAGINALE, Texture.class);
+    public static final AssetDescriptor<Texture> PENE_ANALE =
+            new AssetDescriptor<Texture>(AssetPaths.PENE_ANALE, Texture.class);
+
+
+
     // STIDex
     public static final AssetDescriptor<Texture> DEX_BACK =
             new AssetDescriptor<Texture>(AssetPaths.DEX_BACK, Texture.class);

@@ -68,6 +68,15 @@ public class AssetPaths {
     public static final String PLAY_LOGO4 = "game4/play_logo.png";
     public static final String YELLOW_BACK = "ISTback/yellow.png";
     public static final String PALEBLUE_BACK = "ISTback/paleBlue.png";
+    public static final String ANULINGUS = "game4/annulingus.png";
+    public static final String CARESSES = "game4/caresses.png";
+    public static final String CUNNI = "game4/cunni.png";
+    public static final String SERINGUE_CHANGE = "game4/echange_seringue.png";
+    public static final String EMBRASSADE = "game4/Embrassade.png";
+    public static final String FELLATION = "game4/fellation.png";
+    public static final String GANT = "game4/gant.png";
+    public static final String PENE_VAGINALE = "game4/pene_vaginal.png";
+    public static final String PENE_ANALE = "game4/pene_anale.png";
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";
