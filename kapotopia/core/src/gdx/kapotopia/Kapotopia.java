@@ -264,6 +264,19 @@ public class Kapotopia extends com.badlogic.gdx.Game {
 		this.ass.load(AssetDescriptors.RIGHT_ARROW4);
 		this.ass.load(AssetDescriptors.PAUSE_LOGO4);
 		this.ass.load(AssetDescriptors.PLAY_LOGO4);
+		this.ass.load(AssetDescriptors.ISTCHOICE);
+
+		this.ass.load(AssetDescriptors.VIH);
+		this.ass.load(AssetDescriptors.HEPA);
+		this.ass.load(AssetDescriptors.HEPB);
+		this.ass.load(AssetDescriptors.HEPC);
+		this.ass.load(AssetDescriptors.SYPHILIS);
+		this.ass.load(AssetDescriptors.HERPES);
+		this.ass.load(AssetDescriptors.PAPILLO);
+		this.ass.load(AssetDescriptors.CHLAMYDIA);
+		this.ass.load(AssetDescriptors.GONORRHEE);
+		this.ass.load(AssetDescriptors.TRICHOMONAS);
+
 
 		// IST-INDEX
 		this.ass.load(AssetDescriptors.CLOSE);
