@@ -139,7 +139,7 @@ public class GameState {
             }
             prevtime = timestamp;
 
-            if (mTimer > 0.13f) { //change 0.13f to change snake speed
+            if (mTimer > 0.17f) { //change 0.17f to change snake speed
                 mTimer = 0;
                 advance();
             }

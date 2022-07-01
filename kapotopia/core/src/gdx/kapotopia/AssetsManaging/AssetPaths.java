@@ -94,6 +94,8 @@ public class AssetPaths {
     public static final String BLUE_SQUARE = "game4/blue_square.png";
     public static final String GREEN_SQUARE = "game4/green_square.png";
 
+    public static final String LEGEND_FR = "game4/legend_fr.png";
+    public static final String LEGEND_EN = "game4/legend_en.png";
     // STIDex
     public static final String DEX_BACK = "Pokedex.png";
     public static final String ARROW = "ui_arrow.png";
@@ -107,6 +109,8 @@ public class AssetPaths {
     // IntroG3
     public static final String I3_HOUSE = "game3/intro/Monde2Ecran1.png";
     public static final String I3_INSIDE = "game3/intro/Monde2Ecran2.png";
+    //IntroG4
+    public static final String BACKGROUND_DISC = "game4/background_discussion.png";
     // Characters
     public static final String MI_NORMAL = "MireilleImages/Mireille.png";
     public static final String MI_HAPPY = "MireilleImages/MireilleBoucheOuverte.png";

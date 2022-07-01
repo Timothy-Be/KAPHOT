@@ -69,9 +69,7 @@ public class mockupG4 extends CinematicScreen {
                                 .build()
                 }
         };
-        final Image sky = new Image(game.ass.get(AssetDescriptors.SKY));
-        final Image sea = new Image(game.ass.get(AssetDescriptors.SEA));
-        final Image sand = new Image(game.ass.get(AssetDescriptors.SABLE));
+        final Image back = new Image(game.ass.get(AssetDescriptors.BACKGROUND_DISC));
         final Image mireilleHappy = new Image(game.ass.get(AssetDescriptors.MI_HAPPY));
         mireilleHappy.setScale(GameConfig.SCALLING_FACTOR_INTROS);
         mireilleHappy.setPosition(ww / 4f, 0);
@@ -86,32 +84,22 @@ public class mockupG4 extends CinematicScreen {
 
         final Image[][] images = {
                 {
-                        sand,
-                        sky,
-                        sea,
+                        back,
                         mireilleHappy,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_RIGHT))
                 },
                 {
-                        sand,
-                        sky,
-                        sea,
+                        back,
                         mireilleSurprise,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_RIGHT))
                 },
                 {
-                        sand,
-                        sky,
-                        sea,
-                        sand,
+                        back,
                         tom,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_LEFT))
                 },
                 {
-                        sand,
-                        sky,
-                        sea,
-                        sand,
+                        back,
                         tom,
                         new Image(game.ass.get(AssetDescriptors.BUBBLE_EXPL))
                 }
