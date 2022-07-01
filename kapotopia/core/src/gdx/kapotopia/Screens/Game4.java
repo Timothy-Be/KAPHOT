@@ -65,7 +65,6 @@ public class Game4 implements Screen {
     public Game4(final Kapotopia game) {
         this.game = game;
         this.loc = game.loc;
-        gameState = new GameState(game, this);
         
         screenWidth = game.viewport.getWorldWidth();
         screenHeight = game.viewport.getWorldHeight();
@@ -131,16 +130,14 @@ public class Game4 implements Screen {
 
         Image background = new Image(game.ass.get(AssetDescriptors.BACKGROUND_GAME4));
 
-        scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + gameState.getTotalScore()).withStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
-                .withPosition(50, screenHeight - 120).build();
-
         this.stage = new Stage(game.viewport);
         this.stage.addActor(background);
         this.stage.addActor(rightArrow);
         this.stage.addActor(downArrow);
         this.stage.addActor(leftArrow);
         this.stage.addActor(upArrow);
-        this.stage.addActor(scoreLabel);
+
+        gameState = new GameState(game, this);
 
         // Buttons
         final Game4 dis = this;
@@ -208,6 +205,9 @@ public class Game4 implements Screen {
 
         stage.addActor(quitBtn);
         stage.addActor(pauseBtn);
+        scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + gameState.getTotalScore()).withStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withPosition(50, screenHeight - 120).build();
+        this.stage.addActor(scoreLabel);
     }
 
     private void setDirection(int nextDirection){
@@ -298,5 +298,9 @@ public class Game4 implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }
