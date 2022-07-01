@@ -23,11 +23,10 @@ public class GameState {
     private Kapotopia game;
     Screen screen;
 
-    private int screenWidth;
-    private int screenHeight;
+    private int totalScore;
 
     private int snakeSize = 10;  //  10-15 squares square
-    private int boardSize = 11; //12
+    private int boardSize = 11;
     private int yOffset = 308;
     private int xOffset = 30;
     private int direction = 0;
@@ -43,11 +42,7 @@ public class GameState {
         this.game = game;
         this.screen = screen;
 
-        screenWidth = game.viewport.getScreenWidth(); //720 1080
-        screenHeight = game.viewport.getScreenHeight(); //1193 1920
-
-        System.out.println(screenWidth);
-        System.out.println(screenHeight);
+        this.totalScore = 0;
 
         mBody.addLast(new BodyPart(15,15, boardSize));
         mBody.addLast(new BodyPart(15,14, boardSize));
@@ -64,6 +59,10 @@ public class GameState {
         } else if (direction == 3 && nextDirection != 1){
             this.direction = nextDirection;
         }
+    }
+
+    public int getTotalScore(){
+        return this.totalScore;
     }
 
     public void update(float delta, Viewport viewport) {
@@ -107,9 +106,11 @@ public class GameState {
         for (Food f: foods) {
             if (mBody.first().getX() == f.getX() && mBody.first().getY() == f.getY()) {
                 if (f.getType() < 3) {
+                    this.totalScore += 10;
                     snakeLength++;
                 } else if (f.getType() == 3 || f.getType() == 4) {
                     snakeLength--;
+                    this.totalScore -= 10;
                     if (snakeLength == 0) {
                         game.destroyScreen(screen);
                         game.changeScreen(ScreenType.WORLD2);

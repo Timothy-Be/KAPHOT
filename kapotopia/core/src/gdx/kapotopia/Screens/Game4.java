@@ -12,14 +12,17 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gdx.kapotopia.AssetsManaging.AssetDescriptors;
+import gdx.kapotopia.Fonts.FontHelper;
 import gdx.kapotopia.Game4.GameState;
 import gdx.kapotopia.GameConfig;
 import gdx.kapotopia.Helpers.Builders.ImageButtonBuilder;
+import gdx.kapotopia.Helpers.Builders.LabelBuilder;
 import gdx.kapotopia.Kapotopia;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -37,6 +40,8 @@ public class Game4 implements Screen {
     private float screenHeight;
 
     private Texture arrow1, arrow2, arrow3, arrow4;
+
+    private Label scoreLabel;
 
     private final String TAG = this.getClass().getSimpleName();
     private GameState gameState;
@@ -111,12 +116,16 @@ public class Game4 implements Screen {
 
         Image background = new Image(game.ass.get(AssetDescriptors.BACKGROUND_GAME4));
 
+        scoreLabel = new LabelBuilder(game, game.loc.getString("score2_label")  + gameState.getTotalScore()).withStyle(FontHelper.CLASSIC_SANS_NORMAL_WHITE)
+                .withPosition(50, screenHeight - 120).build();
+
         this.stage = new Stage(game.viewport);
         this.stage.addActor(background);
         this.stage.addActor(rightArrow);
         this.stage.addActor(downArrow);
         this.stage.addActor(leftArrow);
         this.stage.addActor(upArrow);
+        this.stage.addActor(scoreLabel);
     }
 
     private void setDirection(int nextDirection){
@@ -155,6 +164,8 @@ public class Game4 implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+
+        scoreLabel.setText(game.loc.getString("score2_label")  + gameState.getTotalScore());
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
